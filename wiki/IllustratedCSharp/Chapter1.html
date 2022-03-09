@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.0.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>IllustratedCSharp：第1章 C#和.NET框架 - 番茄就是西红柿</title>
+
+  
+
+  
+    <meta name="description" content="C#编程语言是为在巨硬公司的.NET框架上开发程序而设计的。在开始之前，首先要指出C#的正确发音：see sharp。 .NET 框架的组成.NET 框架由三部分组成：编程工具、BCL（Base Class Library，基类库）和执行环境CLR（Common Language Runtime，公共语言运行时）。CLR在运行时管理程序的执行，包括以下内容：  内存管理和垃圾收集。 代码安全验证。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第1章 C#和.NET框架">
+<meta property="og:url" content="https://theyangfan.github.io/wiki/IllustratedCSharp/Chapter1.html">
+<meta property="og:site_name" content="番茄就是西红柿">
+<meta property="og:description" content="C#编程语言是为在巨硬公司的.NET框架上开发程序而设计的。在开始之前，首先要指出C#的正确发音：see sharp。 .NET 框架的组成.NET 框架由三部分组成：编程工具、BCL（Base Class Library，基类库）和执行环境CLR（Common Language Runtime，公共语言运行时）。CLR在运行时管理程序的执行，包括以下内容：  内存管理和垃圾收集。 代码安全验证。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-09T14:18:57.054Z">
+<meta property="article:modified_time" content="2022-03-09T14:18:57.054Z">
+<meta property="article:author" content="Tomato Fan">
+<meta property="article:tag" content="Tomato,番茄">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap wiki"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>全部</a><a class="title" href="/wiki/IllustratedCSharp/index.html"><div class="main">《C#图解教程》</div><div class="sub cap">第5版</div></a></div>
+</header>
+
+<div class="widgets">
+
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/index.html"><span class="toc-text">前言</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/IllustratedCSharp/Chapter1.html"><span class="toc-text">第1章 C#和.NET框架</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NET-%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">.NET 框架的组成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%B1%BB%E5%BA%93%EF%BC%88BCL%EF%BC%89"><span class="toc-text">基类库（BCL）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E6%88%90-CIL"><span class="toc-text">编译成 CIL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E6%88%90%E6%9C%AC%E6%9C%BA%E4%BB%A3%E7%A0%81%E5%B9%B6%E6%89%A7%E8%A1%8C"><span class="toc-text">编译成本机代码并执行</span></a></li></ol></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter8.html"><span class="toc-text">第8章 类和继承</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter19.html"><span class="toc-text">第19章 枚举器和迭代器</span></a></div></div></div>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/IllustratedCSharp/index.html">《C#图解教程》</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-09T14:18:57.054Z">2022-03-09</time></div></div>
+
+  <article class='content md wiki'>
+  <h1 class="article-title"><span>第1章 C#和.NET框架</span></h1>
+  <p>C#编程语言是为在巨硬公司的.NET框架上开发程序而设计的。在开始之前，首先要指出C#的正确发音：see sharp。</p>
+<h2 id="NET-框架的组成"><a href="#NET-框架的组成" class="headerlink" title=".NET 框架的组成"></a>.NET 框架的组成</h2><p>.NET 框架由三部分组成：编程工具、BCL（Base Class Library，基类库）和执行环境CLR（Common Language Runtime，公共语言运行时）。CLR在运行时管理程序的执行，包括以下内容：</p>
+<ul>
+<li>内存管理和垃圾收集。</li>
+<li>代码安全验证。</li>
+<li>代码执行、线程管理及异常处理。</li>
+</ul>
+<h3 id="基类库（BCL）"><a href="#基类库（BCL）" class="headerlink" title="基类库（BCL）"></a>基类库（BCL）</h3><p>.NET 框架提供了一个庞大的基础类库，很自然的，它被称为基类库（Base Class Library，BCL）。（有时称为框架类库—Framework Class Library，FCL。）在编写程序时，可以使用以下的类：</p>
+<ul>
+<li><strong>通用基础类</strong>：这些类提供一组极为强大的工具，可以应用到许多编程任务中，比如文件操作、字符串操作、安全和加密。</li>
+<li><strong>集合类</strong>：这些类实现了列表、字典、散列表以及位数组。</li>
+<li><strong>线程和同步类</strong>：这些类用于创建多线程程序。</li>
+<li><strong>XML 类</strong>：这些类用于创建、读取以及操作XML文档。</li>
+</ul>
+<h3 id="编译成-CIL"><a href="#编译成-CIL" class="headerlink" title="编译成 CIL"></a>编译成 CIL</h3><p>.NET 语言的编译器接受源代码文件，并生成名为程序集的输出文件。</p>
+<ul>
+<li>程序集要么是可执行的，要么是DLL。</li>
+<li>程序集里的代码并不是本机代码，而是一种名称为CIL（Common Intermediate Language，公共中间语言）的中间语言。</li>
+<li>程序集包含的信息中，包括下列项目：<ul>
+<li>程序的CIL；</li>
+<li>程序中使用的类型的元数据；</li>
+<li>对其他程序集引用的数据。</li>
+</ul>
+</li>
+</ul>
+<h3 id="编译成本机代码并执行"><a href="#编译成本机代码并执行" class="headerlink" title="编译成本机代码并执行"></a>编译成本机代码并执行</h3><p>程序的 CIL 直到被调用运行时才会被编译成本机代码。在运行时，CLR 执行如下步骤：</p>
+<p>（1）检查程序集的安全特性；</p>
+<p>（2）在内存中分配空间；</p>
+<p>（3）把程序集中的可执行代码发送给即时（just-in-time，JIT）编译器，把其中的一部分编译成本机代码。</p>
+<p>程序集中的可执行代码只在需要的时候由JIT编译器编译</p>
+
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/wiki/IllustratedCSharp/Chapter8.html">第8章 类和继承<span class="note">下一篇</span></a><div class="line"></div><a id="prev" href="/wiki/IllustratedCSharp/index.html">前言<span class="note">上一篇</span></a></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="https://theyangfan.github.io/">@Tomato Fan</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1" title="v1.6.1">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.0.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>OpenXML：添加批注 - 番茄就是西红柿</title>
+
+  
+
+  
+    <meta name="description" content="1. 给段落添加批注某个带有批注的段落的xml结构如下：">
+<meta property="og:type" content="website">
+<meta property="og:title" content="添加批注">
+<meta property="og:url" content="https://theyangfan.github.io/wiki/OpenXML/%E6%B7%BB%E5%8A%A0%E6%89%B9%E6%B3%A8.html">
+<meta property="og:site_name" content="番茄就是西红柿">
+<meta property="og:description" content="1. 给段落添加批注某个带有批注的段落的xml结构如下：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-09T14:18:57.056Z">
+<meta property="article:modified_time" content="2022-03-09T14:18:57.056Z">
+<meta property="article:author" content="Tomato Fan">
+<meta property="article:tag" content="Tomato,番茄">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap wiki"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>全部</a><a class="title" href="/wiki/OpenXML/index.html"><div class="main">OpenXML解析</div></a></div>
+</header>
+
+<div class="widgets">
+
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/index.html"><span class="toc-text">OpenXML</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OpenXML/%E6%B7%BB%E5%8A%A0%E6%89%B9%E6%B3%A8.html"><span class="toc-text">添加批注</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BB%99%E6%AE%B5%E8%90%BD%E6%B7%BB%E5%8A%A0%E6%89%B9%E6%B3%A8"><span class="toc-text">1. 给段落添加批注</span></a></li></ol></div></div></div>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OpenXML/index.html">OpenXML解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-09T14:18:57.056Z">2022-03-09</time></div></div>
+
+  <article class='content md wiki'>
+  <h1 class="article-title"><span>添加批注</span></h1>
+  <h2 id="1-给段落添加批注"><a href="#1-给段落添加批注" class="headerlink" title="1. 给段落添加批注"></a>1. 给段落添加批注</h2><p>某个带有批注的段落的xml结构如下：</p>
+<span id="more"></span>
+
+
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:p</span> <span class="attr">xmlns:w</span>=<span class="string">&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:commentRangeStart</span> <span class="attr">w:id</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:r</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:t</span>&gt;</span>番茄就是西红柿<span class="tag">&lt;/<span class="name">w:t</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:r</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:commentRangeEnd</span> <span class="attr">w:id</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:r</span> <span class="attr">w:rsidR</span>=<span class="string">&quot;00CD7E74&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">w:rStyle</span> <span class="attr">w:val</span>=<span class="string">&quot;a3&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:commentReference</span> <span class="attr">w:id</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:r</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>参照上述结构，代码如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> DocumentFormat.OpenXml.Packaging;</span><br><span class="line"><span class="keyword">using</span> DocumentFormat.OpenXml.Wordprocessing;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AppendComment</span>(<span class="params">WordprocessingDocument doc, Paragraph paragraph, <span class="built_in">string</span> author, <span class="built_in">string</span> content</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> id = <span class="number">0</span>; <span class="comment">// 新批注Id</span></span><br><span class="line">    WordprocessingCommentsPart part = doc.MainDocumentPart.WordprocessingCommentsPart;</span><br><span class="line">    <span class="keyword">if</span> (part == <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        part = doc.MainDocumentPart.AddNewPart&lt;P.WordprocessingCommentsPart&gt;();</span><br><span class="line">        part.Comments = <span class="keyword">new</span> Comments();</span><br><span class="line">    &#125;</span><br><span class="line">    Comments comments = part.Comments;</span><br><span class="line">    <span class="comment">// Id 值为当前批注最大值加1</span></span><br><span class="line">    List&lt;<span class="built_in">int</span>&gt; ids = <span class="keyword">new</span> List&lt;<span class="built_in">int</span>&gt;();</span><br><span class="line">    <span class="keyword">foreach</span> (Comment c <span class="keyword">in</span> comments)</span><br><span class="line">        ids.Add(c.Id.Value.ToInt());</span><br><span class="line">    <span class="keyword">if</span> (ids.Count &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ids.Sort();</span><br><span class="line">        id = ids.Last() + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 设置批注内容</span></span><br><span class="line">    Paragraph con_para = <span class="keyword">new</span> Paragraph(<span class="keyword">new</span> Run(<span class="keyword">new</span> Text(content)));</span><br><span class="line">    Comment comment = <span class="keyword">new</span> Comment(con_para) &#123; Id = id.ToString(), Author = author &#125;;</span><br><span class="line">    comments.AppendChild(comment);</span><br><span class="line">    <span class="comment">// 插入批注标记</span></span><br><span class="line">    CommentRangeStart start = <span class="keyword">new</span> CommentRangeStart() &#123; Id = id.ToString() &#125;;</span><br><span class="line">    CommentRangeEnd end = <span class="keyword">new</span> CommentRangeEnd() &#123; Id = id.ToString() &#125;;</span><br><span class="line">    Run run = <span class="keyword">new</span> Run(<span class="keyword">new</span> CommentReference() &#123; Id = id.ToString()&#125;);</span><br><span class="line">    paragraph.InsertAt(start, <span class="number">0</span>);</span><br><span class="line">    paragraph.AppendChild(end);</span><br><span class="line">    paragraph.AppendChild(run);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-给特定文本添加批注"><a href="#2-给特定文本添加批注" class="headerlink" title="2. 给特定文本添加批注"></a>2. 给特定文本添加批注</h4>
+  
+
+
+  </article>
+  
+<br>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="https://theyangfan.github.io/">@Tomato Fan</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1" title="v1.6.1">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
