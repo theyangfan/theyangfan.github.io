@@ -18,20 +18,20 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
-  <title>IllustratedCSharp：前言 - 番茄就是西红柿</title>
+  <title>Berry.Docx：表格 - 番茄就是西红柿</title>
 
   
 
   
-    <meta name="description" content="学习愉快！">
+    <meta name="description" content="1. 添加表格下面的示例演示如何在文档中添加表格： 1234567891011121314151617using Berry.Docx;using Berry.Docx.Documents;using (Document doc &#x3D; new Document(&quot;example.docx&quot;))&amp;#123;    Table tbl1 &#x3D; doc.CreateTable(3, 3)">
 <meta property="og:type" content="website">
-<meta property="og:title" content="前言">
-<meta property="og:url" content="https://theyangfan.github.io/wiki/IllustratedCSharp/index.html">
+<meta property="og:title" content="表格">
+<meta property="og:url" content="https://theyangfan.github.io/wiki/Berry.Docx/examples/TableExample.html">
 <meta property="og:site_name" content="番茄就是西红柿">
-<meta property="og:description" content="学习愉快！">
+<meta property="og:description" content="1. 添加表格下面的示例演示如何在文档中添加表格： 1234567891011121314151617using Berry.Docx;using Berry.Docx.Documents;using (Document doc &#x3D; new Document(&quot;example.docx&quot;))&amp;#123;    Table tbl1 &#x3D; doc.CreateTable(3, 3)">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-09T14:18:57.055Z">
-<meta property="article:modified_time" content="2022-03-09T14:18:57.055Z">
+<meta property="article:published_time" content="2022-03-10T15:29:06.778Z">
+<meta property="article:modified_time" content="2022-03-10T15:29:06.778Z">
 <meta property="article:author" content="Tomato Fan">
 <meta property="article:tag" content="Tomato,番茄">
 <meta name="twitter:card" content="summary">
@@ -55,7 +55,7 @@
 <body>
   
 
-<div class="l_cover wiki"><article class="cover-wrap md"><div class="preview"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://theyangfan.github.io/wiki/IllustratedCSharp/images/cover.png" height="500px"></div><div class="cover-title"><span>《C#图解教程》</span></div><div class="description">本书是极为出色的 C# 著作。正如本书作者所说，它不仅包含了入门的基础知识，而且还能作为开发过程中的参考书使用。书中使用了大量的示例和图表，使内容一目了然。即便是有经验的C#程序员，阅读这本书也会受益匪浅。</div><div class="start-wrap"><a class="button theme start" href="#start">查看</a></div></article></div><hr>
+
 
 
   <div class='l_body' id='start'>
@@ -65,12 +65,12 @@
 
 <header class="header">
 
-<div class="logo-wrap wiki"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>全部</a><a class="title" href="/wiki/IllustratedCSharp/index.html"><div class="main">《C#图解教程》</div><div class="sub cap">第5版</div></a></div>
+<div class="logo-wrap wiki"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>全部</a><a class="title" href="/wiki/Berry.Docx/index.html"><div class="main">Berry.Docx</div><div class="sub cap">文字处理库</div></a></div>
 </header>
 
 <div class="widgets">
 
-<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/IllustratedCSharp/index.html"><span class="toc-text">前言</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter1.html"><span class="toc-text">第1章 C#和.NET框架</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter2.html"><span class="toc-text">第2章 C#和.NET Core</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter4.html"><span class="toc-text">第4章 类型、存储和变量</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter8.html"><span class="toc-text">第8章 类和继承</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter19.html"><span class="toc-text">第19章 枚举器和迭代器</span></a></div></div></div>
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">快速开始</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/Berry.Docx/index.html"><span class="toc-text">介绍</span></a></div></div><div class="widget-header cap dis-select"><span class="name">示例</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/Berry.Docx/examples/ParagraphExample.html"><span class="toc-text">段落</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/Berry.Docx/examples/TableExample.html"><span class="toc-text">表格</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B7%BB%E5%8A%A0%E8%A1%A8%E6%A0%BC"><span class="toc-text">1. 添加表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%8F%92%E5%85%A5%E8%A1%8C%E5%92%8C%E5%88%97"><span class="toc-text">2. 插入行和列</span></a></li></ol></div></div></div>
 </div>
 
 
@@ -82,18 +82,23 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/IllustratedCSharp/index.html">《C#图解教程》</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-09T14:18:57.055Z">2022-03-09</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/Berry.Docx/index.html">Berry.Docx</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-10T15:29:06.778Z">2022-03-10</time></div></div>
 
   <article class='content md wiki'>
-  <h1 class="article-title"><span>前言</span></h1>
-  <p>学习愉快！</p>
+  <h1 class="article-title"><span>表格</span></h1>
+  <h2 id="1-添加表格"><a href="#1-添加表格" class="headerlink" title="1. 添加表格"></a>1. 添加表格</h2><p>下面的示例演示如何在文档中添加表格：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Berry.Docx;</span><br><span class="line"><span class="keyword">using</span> Berry.Docx.Documents;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> (Document doc = <span class="keyword">new</span> Document(<span class="string">&quot;example.docx&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    Table tbl1 = doc.CreateTable(<span class="number">3</span>, <span class="number">3</span>);<span class="comment">// 3行3列</span></span><br><span class="line"></span><br><span class="line">    tbl1.Rows[<span class="number">0</span>].Cells[<span class="number">1</span>].Paragraphs[<span class="number">0</span>].Text = <span class="string">&quot;第1列&quot;</span>;</span><br><span class="line">    tbl1.Rows[<span class="number">0</span>].Cells[<span class="number">2</span>].Paragraphs[<span class="number">0</span>].Text = <span class="string">&quot;第2列&quot;</span>;</span><br><span class="line">    tbl1.Rows[<span class="number">1</span>].Cells[<span class="number">0</span>].Paragraphs[<span class="number">0</span>].Text = <span class="string">&quot;第1行&quot;</span>;</span><br><span class="line">    tbl1.Rows[<span class="number">2</span>].Cells[<span class="number">0</span>].Paragraphs[<span class="number">0</span>].Text = <span class="string">&quot;第2行&quot;</span>;</span><br><span class="line"></span><br><span class="line">    doc.Sections[<span class="number">0</span>].ChildObjects.Add(tbl1);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保存</span></span><br><span class="line">    doc.Save();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-插入行和列"><a href="#2-插入行和列" class="headerlink" title="2. 插入行和列"></a>2. 插入行和列</h2><p>下面的示例演示如何在表格单元格四周插入行和列：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Berry.Docx;</span><br><span class="line"><span class="keyword">using</span> Berry.Docx.Documents;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> (Document doc = <span class="keyword">new</span> Document(<span class="string">&quot;example.docx&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    Table tbl1 = doc.Sections[<span class="number">0</span>].Tables[<span class="number">0</span>];</span><br><span class="line">    TableCell cell1 = tbl1.Rows[<span class="number">1</span>].Cells[<span class="number">1</span>];</span><br><span class="line">    cell1.InsertRowAbove();</span><br><span class="line">    cell1.InsertRowBelow();</span><br><span class="line">    cell1.InsertColumnLeft();</span><br><span class="line">    cell1.InsertColumnRight();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保存</span></span><br><span class="line">    doc.Save();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
   
 
 
   </article>
   
-<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/wiki/IllustratedCSharp/Chapter1.html">第1章 C#和.NET框架<span class="note">下一篇</span></a><div class="line"></div></section></div>
+<br>
 
   
 
