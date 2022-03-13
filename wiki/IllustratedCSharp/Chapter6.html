@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.0.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>IllustratedCSharp：第6章 方法 - 番茄就是西红柿</title>
+
+  
+
+  
+    <meta name="description" content="1. 参数 形参：局部变量，声明在方法的参数列表中，而不是在方法体中。 实参：用于初始化形参的表达式或变量，位于方法调用的参数列表。  1.1 值参数使用值参数时，通过将实参的值复制到形参的方式把数据传递给方法。方法被调用时，系统执行如下操作：  在栈中为形参分配空间； 将实参的值复制给形参。  1.2 引用参数 使用引用参数时，必须在方法的声明和调用中都使用ref修饰符。 实参必须是变量，在用作">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第6章 方法">
+<meta property="og:url" content="https://theyangfan.github.io/wiki/IllustratedCSharp/Chapter6.html">
+<meta property="og:site_name" content="番茄就是西红柿">
+<meta property="og:description" content="1. 参数 形参：局部变量，声明在方法的参数列表中，而不是在方法体中。 实参：用于初始化形参的表达式或变量，位于方法调用的参数列表。  1.1 值参数使用值参数时，通过将实参的值复制到形参的方式把数据传递给方法。方法被调用时，系统执行如下操作：  在栈中为形参分配空间； 将实参的值复制给形参。  1.2 引用参数 使用引用参数时，必须在方法的声明和调用中都使用ref修饰符。 实参必须是变量，在用作">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-13T09:12:09.888Z">
+<meta property="article:modified_time" content="2022-03-13T09:12:09.888Z">
+<meta property="article:author" content="Tomato Fan">
+<meta property="article:tag" content="Tomato,番茄">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap wiki"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>全部</a><a class="title" href="/wiki/IllustratedCSharp/index.html"><div class="main">《C#图解教程》</div><div class="sub cap">第5版</div></a></div>
+</header>
+
+<div class="widgets">
+
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/index.html"><span class="toc-text">前言</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter1.html"><span class="toc-text">第1章 C#和.NET框架</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter2.html"><span class="toc-text">第2章 C#和.NET Core</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter4.html"><span class="toc-text">第4章 类型、存储和变量</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter5.html"><span class="toc-text">第5章 类的基本概念</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/IllustratedCSharp/Chapter6.html"><span class="toc-text">第6章 方法</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8F%82%E6%95%B0"><span class="toc-text">1. 参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%80%BC%E5%8F%82%E6%95%B0"><span class="toc-text">1.1 值参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%BC%95%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-text">1.2 引用参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E4%BD%9C%E4%B8%BA%E5%80%BC%E5%8F%82%E6%95%B0%E5%92%8C%E5%BC%95%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-text">1.3 引用类型作为值参数和引用参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E8%BE%93%E5%87%BA%E5%8F%82%E6%95%B0"><span class="toc-text">1.4 输出参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E5%8F%82%E6%95%B0%E6%95%B0%E7%BB%84"><span class="toc-text">1.5 参数数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-ref-%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%92%8C-ref-%E8%BF%94%E5%9B%9E"><span class="toc-text">1.6 ref 局部变量和 ref 返回</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E5%91%BD%E5%90%8D%E5%8F%82%E6%95%B0"><span class="toc-text">1.7  命名参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-%E6%A0%88%E5%B8%A7"><span class="toc-text">1.8 栈帧</span></a></li></ol></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter7.html"><span class="toc-text">第7章 深入理解类</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter8.html"><span class="toc-text">第8章 类和继承</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter19.html"><span class="toc-text">第19章 枚举器和迭代器</span></a></div></div></div>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/IllustratedCSharp/index.html">《C#图解教程》</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-13T09:12:09.888Z">2022-03-13</time></div></div>
+
+  <article class='content md wiki'>
+  <h1 class="article-title"><span>第6章 方法</span></h1>
+  <h2 id="1-参数"><a href="#1-参数" class="headerlink" title="1. 参数"></a>1. 参数</h2><ul>
+<li>形参：局部变量，声明在方法的参数列表中，而不是在方法体中。</li>
+<li>实参：用于初始化形参的表达式或变量，位于方法调用的参数列表。</li>
+</ul>
+<h3 id="1-1-值参数"><a href="#1-1-值参数" class="headerlink" title="1.1 值参数"></a>1.1 值参数</h3><p>使用值参数时，通过将实参的值复制到形参的方式把数据传递给方法。方法被调用时，系统执行如下操作：</p>
+<ul>
+<li>在栈中为形参分配空间；</li>
+<li>将实参的值复制给形参。</li>
+</ul>
+<h3 id="1-2-引用参数"><a href="#1-2-引用参数" class="headerlink" title="1.2 引用参数"></a>1.2 引用参数</h3><ul>
+<li>使用引用参数时，必须在方法的声明和调用中都使用ref修饰符。</li>
+<li>实参必须是变量，在用作实参前必须被赋值。如果是引用类型变量，可以赋值为一个引用或null。</li>
+</ul>
+<p>引用参数具有以下特征：</p>
+<ul>
+<li>不会在栈上为形参分配内存；</li>
+<li>形参的参数名将作为实参变量的别名，指向相同的内存位置。</li>
+</ul>
+<h3 id="1-3-引用类型作为值参数和引用参数"><a href="#1-3-引用类型作为值参数和引用参数" class="headerlink" title="1.3 引用类型作为值参数和引用参数"></a>1.3 引用类型作为值参数和引用参数</h3><p>对于一个引用类型对象，不管是将其作为值参数传递还是作为引用参数传递，都可以在方法成员内部修改它的成员。如果在方法内部设置引用类型形参本身时有以下两种情况：</p>
+<p><strong>将引用类型对象作为值参数传递：</strong>如果在方法内创建一个新对象并赋值给形参，将切断形参与实参之间的关联，并且在方法调用结束后，新对象也将不复存在。</p>
+<ul>
+<li>当方法分配新的对象并赋值给形参时，（方法外部的）实参仍指向原始对象，而形参指向的是新对象；</li>
+<li>在方法调用之后，实参指向原始对象，形参和新对象都会消失。</li>
+</ul>
+<p><strong>将引用类型对象作为引用参数传递</strong>：如果在方法内创建一个新对象并赋值给形参，在方法结束后该对象依然存在，并且是实参所引用的值。</p>
+<ul>
+<li>在方法调用时，形参和实参指向堆中相同的对象；</li>
+<li>对成员值的修改会同时影响到形参和实参；</li>
+<li>当方法创建新的对象并赋值给形参时，形参和实参的引用都指向该新对象；</li>
+<li>在方法结束后，实参指向在方法内创建的新对象。</li>
+</ul>
+<h3 id="1-4-输出参数"><a href="#1-4-输出参数" class="headerlink" title="1.4 输出参数"></a>1.4 输出参数</h3><p>输出参数用于从方法体内把数据传出到调用代码，有如下要求：</p>
+<ul>
+<li>必须在声明和调用中都使用修饰符 out；</li>
+<li>和引用参数相似，实参必须是变量，而不能是其他类型的表达式；</li>
+<li>在方法内部，给输出参数赋值之后才能读取它。这意味着参数的初始值是无关的，而且没有必要在方法调用之前为实参赋值；</li>
+<li>在方法内部，在方法返回之前，代码中每条可能的路径都必须为所有输出参数赋值。</li>
+</ul>
+<h3 id="1-5-参数数组"><a href="#1-5-参数数组" class="headerlink" title="1.5 参数数组"></a>1.5 参数数组</h3><p>参数数组允许特定类型的零个或多个实参对应一个特定的实参，有如下特点：</p>
+<ul>
+<li>在一个参数列表中只能有一个参数数组。</li>
+<li>如果有，它必须是列表中的最后一个。</li>
+<li>由参数数组表示的所有参数必须是同一类型。</li>
+<li>声明参数数组时需在数据类型前使用 params 修饰符，在数据类型后放置一组空的方括号。</li>
+</ul>
+<h3 id="1-6-ref-局部变量和-ref-返回"><a href="#1-6-ref-局部变量和-ref-返回" class="headerlink" title="1.6 ref 局部变量和 ref 返回"></a>1.6 ref 局部变量和 ref 返回</h3><p>ref 局部变量允许一个变量：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ref</span> <span class="built_in">int</span> y = <span class="keyword">ref</span> x;</span><br></pre></td></tr></table></figure>
+
+<p>ref 返回：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">ref</span> <span class="built_in">int</span> <span class="title">ReturnRef</span>()</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">ref</span> val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-7-命名参数"><a href="#1-7-命名参数" class="headerlink" title="1.7  命名参数"></a>1.7  命名参数</h3><p>使用命名参数，只要显式指定参数的名字，就可以以任意顺序在方法调用中列出实参。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b, <span class="built_in">int</span> c</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func(c:<span class="number">3</span>, a:<span class="number">1</span>, b:<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-8-栈帧"><a href="#1-8-栈帧" class="headerlink" title="1.8 栈帧"></a>1.8 栈帧</h3><p>在调用方法的时候，内存从栈的顶部开始分配，保存和方法关联的一些数据项。这块内存叫做方法的栈帧。栈帧包含的内存保存如下内容：</p>
+<ul>
+<li>返回地址，也就是在方法退出的时候继续执行的位置；</li>
+<li>分配内存的参数，也就是方法的值参数，还可能时参数数组；</li>
+<li>和方法调用相关的其他管理数据项。</li>
+</ul>
+<p>在方法调用时，整个栈帧都会压入栈，方法退出的时候，整个栈帧都会从栈上弹出。弹出栈帧有时候也叫做栈展开。</p>
+
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/wiki/IllustratedCSharp/Chapter7.html">第7章 深入理解类<span class="note">下一篇</span></a><div class="line"></div><a id="prev" href="/wiki/IllustratedCSharp/Chapter5.html">第5章 类的基本概念<span class="note">上一篇</span></a></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="https://theyangfan.github.io/">@Tomato Fan</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1" title="v1.6.1">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
