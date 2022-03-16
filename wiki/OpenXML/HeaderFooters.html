@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.0.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>OpenXML：页眉和页脚 - 番茄就是西红柿</title>
+
+  
+
+  
+    <meta name="description" content="1. 页眉和页脚页眉和页脚指的是出现在 WordprocessingML（以下简称WML）文档每一页顶部或底部的文本、图形或数据（如页码、日期、文档标题等）。页眉出现在上边界（主文档上方），而页脚出现在页面的下边界（主文档下方）。如下所示：">
+<meta property="og:type" content="website">
+<meta property="og:title" content="页眉和页脚">
+<meta property="og:url" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters.html">
+<meta property="og:site_name" content="番茄就是西红柿">
+<meta property="og:description" content="1. 页眉和页脚页眉和页脚指的是出现在 WordprocessingML（以下简称WML）文档每一页顶部或底部的文本、图形或数据（如页码、日期、文档标题等）。页眉出现在上边界（主文档上方），而页脚出现在页面的下边界（主文档下方）。如下所示：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/01.png">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/02.jpg">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/03.jpg">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/04.png">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/05.jpg">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/06.jpg">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/07.png">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/08.png">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/09.png">
+<meta property="article:published_time" content="2022-03-16T15:26:59.050Z">
+<meta property="article:modified_time" content="2022-03-16T15:26:59.050Z">
+<meta property="article:author" content="Tomato Fan">
+<meta property="article:tag" content="Tomato,番茄">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://theyangfan.github.io/wiki/OpenXML/HeaderFooters/01.png">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap wiki"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>全部</a><a class="title" href="/wiki/OpenXML/index.html"><div class="main">Office Open XML 解析</div><div class="sub cap">OpenXML</div></a></div>
+</header>
+
+<div class="widgets">
+
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/index.html"><span class="toc-text">Office Open XML 白皮书</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OpenXML/HeaderFooters.html"><span class="toc-text">页眉和页脚</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%A1%B5%E7%9C%89%E5%92%8C%E9%A1%B5%E8%84%9A"><span class="toc-text">1. 页眉和页脚</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%A1%B5%E7%9C%89"><span class="toc-text">2. 页眉</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Header"><span class="toc-text">2.1 Header</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-HeaderReference"><span class="toc-text">2.2 HeaderReference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%A1%B5%E8%84%9A"><span class="toc-text">3. 页脚</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Footer"><span class="toc-text">3.1 Footer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-FooterReference"><span class="toc-text">3.2 FooterReference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-EvenAndOddHeaders%EF%BC%88%E5%A5%87%E5%81%B6%E9%A1%B5%E4%B8%8D%E5%90%8C%EF%BC%89"><span class="toc-text">4.  EvenAndOddHeaders（奇偶页不同）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-TitlePage%EF%BC%88%E9%A6%96%E9%A1%B5%E4%B8%8D%E5%90%8C%EF%BC%89"><span class="toc-text">5. TitlePage（首页不同）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-LinkToPrevious%EF%BC%88%E9%93%BE%E6%8E%A5%E5%88%B0%E5%89%8D%E4%B8%80%E8%8A%82%EF%BC%89"><span class="toc-text">6. LinkToPrevious（链接到前一节）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">7. 代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-HeaderFooters-%E7%B1%BB"><span class="toc-text">7.1 HeaderFooters 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-HeaderFooter-%E7%B1%BB"><span class="toc-text">7.2 HeaderFooter 类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%8F%82%E8%80%83"><span class="toc-text">8. 参考</span></a></li></ol></div></div></div>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OpenXML/index.html">Office Open XML 解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-16T15:26:59.050Z">2022-03-16</time></div></div>
+
+  <article class='content md wiki'>
+  <h1 class="article-title"><span>页眉和页脚</span></h1>
+  <h2 id="1-页眉和页脚"><a href="#1-页眉和页脚" class="headerlink" title="1. 页眉和页脚"></a>1. 页眉和页脚</h2><p>页眉和页脚指的是出现在 WordprocessingML（以下简称WML）文档每一页顶部或底部的文本、图形或数据（如页码、日期、文档标题等）。页眉出现在上边界（主文档上方），而页脚出现在页面的下边界（主文档下方）。如下所示：</p>
+<span id="more"></span>
+
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/01.png" fancybox="true"/></div></div>
+
+<p>因为 WML 是一种 基于流的格式（数据在节点之间流动），所以页眉和页脚的设定是通过指定文档节中所有页面的页眉页脚来实现的。也就是说，页眉页脚是和节关联的，页眉页脚会应用于节中的所有页面。</p>
+<p>在文档的每一节中，最多可以有三种不同类型的页眉页脚：</p>
+<ul>
+<li>首页页眉&#x2F;页脚</li>
+<li>奇数页页眉&#x2F;页脚</li>
+<li>偶数页页眉&#x2F;页脚</li>
+</ul>
+<p>首页页眉和页脚指定了节的第一页独有的页眉或页脚；奇数页页眉和页脚指定了给定节中所有奇数页的页眉和页脚；偶数页页眉和页脚指定了给定节中所有偶数页的页眉和页脚。</p>
+<h2 id="2-页眉"><a href="#2-页眉" class="headerlink" title="2. 页眉"></a>2. 页眉</h2><p>页眉由 Header 和 HeaderReference 两部分组成。</p>
+<h3 id="2-1-Header"><a href="#2-1-Header" class="headerlink" title="2.1 Header"></a>2.1 Header</h3><p>Header 元素指定在 WordprocessingML（以下简称WML） 文档的一个或多个节中使用的单个页眉的内容。</p>
+<p>该元素是页眉部件（HeaderPart）的根元素。在 Header 元素中，其内容类似正文中的内容。</p>
+<p>示例：假设有如下所示带有一个页眉的文档：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/02.jpg" fancybox="true"/></div></div>
+
+<p>该文档定义了一个文本内容为 “Header” 的页眉，那么此页眉在 WML 中的表示为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:hdr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">w:p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">w:r</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">w:t</span>&gt;</span>Header<span class="tag">&lt;/<span class="name">w:t</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">w:r</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">w:p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:hdr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-HeaderReference"><a href="#2-2-HeaderReference" class="headerlink" title="2.2 HeaderReference"></a>2.2 HeaderReference</h3><p>HeaderReference 元素指定与文档中的当前节关联的单个页眉。通过 <code>id</code> 属性引用该页眉，该属性指定与包中页眉部件之间的显式关系。</p>
+<p>HeaderReference 元素在节属性（sectPr）中定义。在文档的每一节中，最多可以有三种不同类型的页眉：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">enum</span> HeaderFooterValues</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Even page header（偶数页页眉，偶数编号的页面）</span></span><br><span class="line">    Even = <span class="number">0</span>,</span><br><span class="line">	<span class="comment">// Odd page header（奇数页页眉，也是默认页眉页脚类型）</span></span><br><span class="line">    Default = <span class="number">1</span>,</span><br><span class="line">    <span class="comment">// First page header（首页页眉）</span></span><br><span class="line">    First = <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>页眉类型由 <code>type</code> 属性指定。如果节中包含多个同一类型的页眉页脚，则认为该文档不符合标准。</p>
+<p>示例：假设有如下带有不同的首页、偶数页、奇数页页眉的文档：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/03.jpg" fancybox="true"/></div></div>
+
+<p>此文档定义了3个页眉，每一个在文档部件（DocumentPart）中都有一个唯一的 Relationship ID，如下所示：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/04.png" fancybox="true"/></div></div>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Relationships</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://schemas.openxmlformats.org/package/2006/relationships&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">Relationship</span> <span class="attr">Id</span>=<span class="string">&quot;rId8&quot;</span> <span class="attr">Type</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/header&quot;</span> <span class="attr">Target</span>=<span class="string">&quot;header3.xml&quot;</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">Relationship</span> <span class="attr">Id</span>=<span class="string">&quot;rId7&quot;</span> <span class="attr">Type</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/header&quot;</span> <span class="attr">Target</span>=<span class="string">&quot;header2.xml&quot;</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">Relationship</span> <span class="attr">Id</span>=<span class="string">&quot;rId6&quot;</span> <span class="attr">Type</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/header&quot;</span> <span class="attr">Target</span>=<span class="string">&quot;header1.xml&quot;</span>/&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">Relationships</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，在节属性（sectPr）中使用以下 WML 引用这些页眉：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:sectPr</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">  <span class="tag">&lt;<span class="name">w:headerReference</span> <span class="attr">w:type</span>=<span class="string">&quot;even&quot;</span> <span class="attr">r:id</span>=<span class="string">&quot;rId6&quot;</span> <span class="attr">xmlns:r</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">  <span class="tag">&lt;<span class="name">w:headerReference</span> <span class="attr">w:type</span>=<span class="string">&quot;default&quot;</span> <span class="attr">r:id</span>=<span class="string">&quot;rId7&quot;</span> <span class="attr">xmlns:r</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">  <span class="tag">&lt;<span class="name">w:headerReference</span> <span class="attr">w:type</span>=<span class="string">&quot;first&quot;</span> <span class="attr">r:id</span>=<span class="string">&quot;rId8&quot;</span> <span class="attr">xmlns:r</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">  <span class="tag">&lt;<span class="name">w:titlePg</span> /&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">w:sectPr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果在节中未指定任一种页眉，则采用以下规则：</p>
+<ul>
+<li>如果未指定首页页眉（type 为 first 的 headerReference 元素），但指定了 titlePg（首页不同） 元素，则继承上一节的首页页眉；如果这是文档的第一节，则创建新的空白页眉。如果未指定 titlePg 元素，则不显示首页页眉，并在其位置使用奇数页页眉。</li>
+<li>如果未指定偶数页页眉（type 为 even 的 headerReference 元素），但在 settings 中指定了 evenAndOddHeaders（奇偶页不同）元素，则继承上一节的偶数页页眉；如果这是文档的第一节，则创建新的空白页眉。如果未指定 evenAndOddHeaders 元素，则不显示偶数页页眉，并在其位置使用奇数页页眉。</li>
+<li>如果未指定奇数页页眉（type 为 default 的 headerReference 元素），则从上一节继承奇数页页眉；如果这是文档的第一节，则创建新的空白页眉。</li>
+</ul>
+<h2 id="3-页脚"><a href="#3-页脚" class="headerlink" title="3. 页脚"></a>3. 页脚</h2><p>页脚由 Footer 和 FooterReference 两部分组成。</p>
+<h3 id="3-1-Footer"><a href="#3-1-Footer" class="headerlink" title="3.1 Footer"></a>3.1 Footer</h3><p>Footer 元素指定在 WML 文档的一个或多个节中使用的单个页脚的内容。</p>
+<p>该元素是页眉部件（FooterPart）的根元素。在 Footer 元素中，其内容类似正文中的内容。</p>
+<p>示例：假设有如下所示带有一个页脚的文档：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/05.jpg" fancybox="true"/></div></div>
+
+<p>该文档定义了一个文本内容为 “Footer” 的页眉，那么此页眉在 WML 中的表示为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:ftr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">w:p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">w:r</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">w:t</span>&gt;</span>Footer<span class="tag">&lt;/<span class="name">w:t</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">w:r</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">w:p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:ftr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-2-FooterReference"><a href="#3-2-FooterReference" class="headerlink" title="3.2 FooterReference"></a>3.2 FooterReference</h3><p>FooterReference 元素指定与文档中的当前节关联的单个页脚。通过 <code>id</code> 属性引用该页眉，该属性指定与包中页脚部件之间的显式关系。</p>
+<p>FooterReference 元素在节属性（sectPr）中定义。在文档的每一节中，最多可以有三种不同类型的页脚：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">enum</span> HeaderFooterValues</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Even page footer（偶数页页脚，页码为偶数的页面）</span></span><br><span class="line">    Even = <span class="number">0</span>,</span><br><span class="line">	<span class="comment">// Odd page footer（奇数页页脚，也是默认页眉页脚类型）</span></span><br><span class="line">    Default = <span class="number">1</span>,</span><br><span class="line">    <span class="comment">// First page footer（首页页脚）</span></span><br><span class="line">    First = <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>页脚类型由 <code>type</code> 属性指定。如果节中包含多个同一类型的页眉页脚，则认为该文档不符合标准。</p>
+<p>示例：假设有如下带有不同的首页、偶数页、奇数页页眉的文档：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/06.jpg" fancybox="true"/></div></div>
+
+<p>此文档定义了3个页眉，每一个在文档部件（DocumentPart）中都有一个唯一的 Relationship ID，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Relationships</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://schemas.openxmlformats.org/package/2006/relationships&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">Relationship</span> <span class="attr">Id</span>=<span class="string">&quot;rId8&quot;</span> <span class="attr">Type</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer&quot;</span> <span class="attr">Target</span>=<span class="string">&quot;footer1.xml&quot;</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">Relationship</span> <span class="attr">Id</span>=<span class="string">&quot;rId11&quot;</span> <span class="attr">Type</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer&quot;</span> <span class="attr">Target</span>=<span class="string">&quot;footer3.xml&quot;</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">Relationship</span> <span class="attr">Id</span>=<span class="string">&quot;rId9&quot;</span> <span class="attr">Type</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer&quot;</span> <span class="attr">Target</span>=<span class="string">&quot;footer2.xml&quot;</span>/&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">Relationships</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，在节属性（sectPr）中使用以下 WML 引用这些页脚：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:sectPr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:footerReference</span> <span class="attr">w:type</span>=<span class="string">&quot;even&quot;</span> <span class="attr">r:id</span>=<span class="string">&quot;rId8&quot;</span> <span class="attr">xmlns:r</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:footerReference</span> <span class="attr">w:type</span>=<span class="string">&quot;default&quot;</span> <span class="attr">r:id</span>=<span class="string">&quot;rId9&quot;</span> <span class="attr">xmlns:r</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:footerReference</span> <span class="attr">w:type</span>=<span class="string">&quot;first&quot;</span> <span class="attr">r:id</span>=<span class="string">&quot;rId11&quot;</span> <span class="attr">xmlns:r</span>=<span class="string">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:titlePg</span> /&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">w:sectPr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果未启用奇偶页不同，则默认页脚将同时出现在奇数和偶数编号的页面上。如果启用了，则对奇数页使用默认页脚。</p>
+<p>如果在节中未指定任一种页脚，则采用以下规则：</p>
+<ul>
+<li>如果未指定首页页脚（type 为 first 的 footerReference 元素），但指定了 titlePg（首页不同） 元素，则继承上一节的首页页脚；如果这是文档的第一节，则创建新的空白页脚。如果未指定 titlePg 元素，则不显示首页页脚，并在其位置使用奇数页页脚。</li>
+<li>如果未指定偶数页页脚（type 为 even 的 footerReference 元素），但在 settings 中指定了 evenAndOddHeaders（奇偶页不同）元素，则继承上一节的偶数页页脚；如果这是文档的第一节，则创建新的空白页脚。如果未指定 evenAndOddHeaders 元素，则不显示偶数页页脚，并在其位置使用奇数页页脚。</li>
+<li>如果未指定奇数页页脚（type 为 default 的 footerReference 元素），则从上一节继承奇数页页脚；如果这是文档的第一节，则创建新的空白页脚。</li>
+</ul>
+<h2 id="4-EvenAndOddHeaders（奇偶页不同）"><a href="#4-EvenAndOddHeaders（奇偶页不同）" class="headerlink" title="4.  EvenAndOddHeaders（奇偶页不同）"></a>4.  EvenAndOddHeaders（奇偶页不同）</h2><p>该元素指定了文档中所有节的奇数页和偶数页是否应该使用不同的页眉页脚。</p>
+<p>在 Word 中，通过【页眉和页脚】的【奇偶页不同】选项来设置，如下所示：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/07.png" fancybox="true"/></div></div>
+
+<p>在 WML 文档中，在 Settings 部件中指定，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:settings</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">w:evenAndOddHeaders</span> /&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">w:settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>EvenAndOddHeaders 是一个全局元素，如果它的 <code>val</code> 属性设置为 true 或省略，那么文档中每一节的奇数页应该使用奇数页页眉页脚，偶数页应该使用偶数页页眉页脚（如果指定了页码，则页面的奇偶通过页码来判定，反之，通过实际的页面顺序来判定，文档第一页从1开始）。如果 EvenAndOddHeaders 的 <code>val</code> 为 false，那么节中所有的页面应该使用奇数页页眉页脚。</p>
+<p>该设置不会影响每一节的首页页眉页脚的出现。如果设置了首页页眉页脚，那么随后的页面将应用此设置。</p>
+<p>如果该元素的值为 false，但是设置了偶数页页眉页脚，那么偶数页页眉页脚会被忽略，显示的是奇数页页眉页脚。反之，如果该元素设置为true，且当前节中未设置奇数、偶数页页眉页脚，那么应该从前一节中继承奇数、偶数页页眉页脚。</p>
+<p>如果未指定该元素，则表示其值为 false。</p>
+<h2 id="5-TitlePage（首页不同）"><a href="#5-TitlePage（首页不同）" class="headerlink" title="5. TitlePage（首页不同）"></a>5. TitlePage（首页不同）</h2><p>TitlePage 元素指定当前节的第一页是否应该使用不同的页眉页脚。</p>
+<p>在 Word 中，通过【页眉和页脚】的【首页不同】选项来设置，如下所示：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/08.png" fancybox="true"/></div></div>
+
+<p>在 WML 文档中，在节属性（sectPr）中指定，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:sectPr</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">w:titlePg</span> /&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">w:sectPr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果元素的<code>val</code>属性为true或忽略，那么当前节的第一页应该使用首页页眉页脚；反之，第一页应该根据页面编号来判断使用奇数页还是偶数页页眉页脚。</p>
+<p>如果未指定此元素或者<code>val</code>属性值为false，并且定义了首页页眉，那么该页眉应该被忽略，显示的是奇数页页眉页脚。相反地，如果<code>val</code>属性值为true，并且在当前节中未指定首页页眉，那么应该继承前一节的首页页眉；如果当前节为文档第一节，那么应该创建一个空白的页眉页脚。</p>
+<h2 id="6-LinkToPrevious（链接到前一节）"><a href="#6-LinkToPrevious（链接到前一节）" class="headerlink" title="6. LinkToPrevious（链接到前一节）"></a>6. LinkToPrevious（链接到前一节）</h2><p>对页眉或页脚使用【链接到前一节】功能可以指定当前节的页眉或页脚继承自前一节。应用该功能会删除在当前节中指定的页眉或页脚。取消该功能会在当前节中创建新的页眉或页脚，从而不再继承于前一节。</p>
+<p>如果当前节是文档的第一节，则此操作无效。</p>
+<p>在 Word 中，通过【页眉和页脚】的【链接到前一节】功能来设置，如下所示：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./HeaderFooters/09.png" fancybox="true"/></div></div>
+
+
+
+<h2 id="7-代码实现"><a href="#7-代码实现" class="headerlink" title="7. 代码实现"></a>7. 代码实现</h2><p>基于上述规则，设计了 <code>HeaderFooters</code>  类和 <code>HeaderFooter</code>  类来操作页眉页脚。</p>
+<h3 id="7-1-HeaderFooters-类"><a href="#7-1-HeaderFooters-类" class="headerlink" title="7.1 HeaderFooters 类"></a>7.1 HeaderFooters 类</h3><p><code>HeaderFooters</code> 类是一个容器，包含了当前节的所有页眉和页脚，是节操作页眉页脚的入口。类中定义了奇偶页不同、首页不同、首页页眉&#x2F;页脚、奇数页页眉&#x2F;页脚和偶数页页眉&#x2F;页脚的属性及方法，如下所示：</p>
+<details class="tag-plugin folding" ><summary><span>奇偶页不同</span></summary><div class="body"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Gets or sets a value indicating whether sections in this document shall have different headers and footers for even and</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> odd pages (<span class="doctag">&lt;see cref=&quot;OddHeader&quot;/&gt;</span>/<span class="doctag">&lt;see cref=&quot;OddFooter&quot;/&gt;</span> and <span class="doctag">&lt;see cref=&quot;EvenHeader&quot;/&gt;</span>/<span class="doctag">&lt;see cref=&quot;EvenFooter&quot;/&gt;</span>). </span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> This property will affect all sections of the document.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">bool</span> DifferentEvenAndOddHeaders</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span> =&gt; _doc.Settings.EvenAndOddHeaders;</span><br><span class="line">    <span class="keyword">set</span> =&gt; _doc.Settings.EvenAndOddHeaders = <span class="keyword">value</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></details>
+
+<details class="tag-plugin folding" ><summary><span>首页不同</span></summary><div class="body"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Gets or sets a value indicating whether the parent section in this document shall have a different header and footer for</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> its first page (see <span class="doctag">&lt;see cref=&quot;FirstPageHeader&quot;/&gt;</span> and <span class="doctag">&lt;see cref=&quot;FirstPageFooter&quot;/&gt;</span>).</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">bool</span> DifferentFirstPageHeaders</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> _section.XElement.Elements&lt;W.TitlePage&gt;().Any();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">value</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!_section.XElement.Elements&lt;W.TitlePage&gt;().Any())</span><br><span class="line">                _section.XElement.AddChild(<span class="keyword">new</span> W.TitlePage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            _section.XElement.RemoveAllChildren&lt;W.TitlePage&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></details>
+
+<details class="tag-plugin folding" ><summary><span>首页页眉</span></summary><div class="body"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Gets the first page header of the section.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> HeaderFooter FirstPageHeader</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span></span><br><span class="line">    &#123;</span><br><span class="line">        W.HeaderReference first = _section.XElement.Elements&lt;W.HeaderReference&gt;().Where(h =&gt; h.Type == W.HeaderFooterValues.First).FirstOrDefault();</span><br><span class="line">        <span class="keyword">if</span>(first != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            P.HeaderPart headerPart = (P.HeaderPart)_doc.Package.MainDocumentPart.GetPartById(first.Id);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, headerPart.Header, first);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (_section.XElement.Elements&lt;W.TitlePage&gt;().Any()</span><br><span class="line">                &amp;&amp; _section.PreviousSection?.HeaderFooters.FirstPageHeader != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, _section.PreviousSection.HeaderFooters.FirstPageHeader);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Adds a first page header to the section. If the first page header exists already, no header will be added again. </span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> And the current first page header will be returned.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>The added first page header.<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HeaderFooter <span class="title">AddFirstPageHeader</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(FirstPageHeader != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> FirstPageHeader;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> id = RelationshipIdGenerator.Generate(_doc);</span><br><span class="line">    P.HeaderPart hdrPart = PartGenerator.AddNewHeaderPart(_doc, id);</span><br><span class="line">    W.HeaderReference hdrRef = <span class="keyword">new</span> W.HeaderReference() &#123; Type = W.HeaderFooterValues.First, Id = id &#125;;</span><br><span class="line">    _section.XElement.InsertAt(hdrRef, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, hdrPart.Header, hdrRef);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div></details>
+
+<details class="tag-plugin folding" ><summary><span>奇数页页眉</span></summary><div class="body"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Gets the odd page header of the section. This is also the default header.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> HeaderFooter OddHeader</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span></span><br><span class="line">    &#123;</span><br><span class="line">        W.HeaderReference odd = _section.XElement.Elements&lt;W.HeaderReference&gt;().Where(h =&gt; h.Type == W.HeaderFooterValues.Default).FirstOrDefault();</span><br><span class="line">        <span class="keyword">if</span> (odd != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            P.HeaderPart headerPart = (P.HeaderPart)_doc.Package.MainDocumentPart.GetPartById(odd.Id);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, headerPart.Header, odd);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(_section.PreviousSection?.HeaderFooters.OddHeader != <span class="literal">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, _section.PreviousSection.HeaderFooters.OddHeader);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Adds an odd page header to the section. If the odd page header exists already, no header will be added again. </span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> And the current odd page header will be returned.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>The added odd page header.<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HeaderFooter <span class="title">AddOddHeader</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (OddHeader != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> OddHeader;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> id = RelationshipIdGenerator.Generate(_doc);</span><br><span class="line">    P.HeaderPart hdrPart = PartGenerator.AddNewHeaderPart(_doc, id);</span><br><span class="line">    W.HeaderReference hdrRef = <span class="keyword">new</span> W.HeaderReference() &#123; Type = W.HeaderFooterValues.Default, Id = id &#125;;</span><br><span class="line">    _section.XElement.InsertAt(hdrRef, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, hdrPart.Header, hdrRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></details>
+
+<details class="tag-plugin folding" ><summary><span>偶数页页眉</span></summary><div class="body"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Gets the even page header of the section.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> HeaderFooter EvenHeader</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span></span><br><span class="line">    &#123;</span><br><span class="line">        W.HeaderReference even = _section.XElement.Elements&lt;W.HeaderReference&gt;().Where(h =&gt; h.Type == W.HeaderFooterValues.Even).FirstOrDefault();</span><br><span class="line">        <span class="keyword">if</span> (even != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            P.HeaderPart headerPart = (P.HeaderPart)_doc.Package.MainDocumentPart.GetPartById(even.Id);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, headerPart.Header, even);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (_doc.Settings.EvenAndOddHeaders</span><br><span class="line">                &amp;&amp; _section.PreviousSection?.HeaderFooters.EvenHeader != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, _section.PreviousSection.HeaderFooters.EvenHeader);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Adds an even page header to the section. If the even page header exists already, no header will be added again. </span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> And the current even page header will be returned.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>The added even page header.<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> HeaderFooter <span class="title">AddEvenHeader</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (EvenHeader != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> EvenHeader;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> id = RelationshipIdGenerator.Generate(_doc);</span><br><span class="line">    P.HeaderPart hdrPart = PartGenerator.AddNewHeaderPart(_doc, id);</span><br><span class="line">    W.HeaderReference hdrRef = <span class="keyword">new</span> W.HeaderReference() &#123; Type = W.HeaderFooterValues.Even, Id = id &#125;;</span><br><span class="line">    _section.XElement.InsertAt(hdrRef, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> HeaderFooter(_doc, _section, hdrPart.Header, hdrRef);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></details>
+
+<h3 id="7-2-HeaderFooter-类"><a href="#7-2-HeaderFooter-类" class="headerlink" title="7.2 HeaderFooter 类"></a>7.2 HeaderFooter 类</h3><p><code>HeaderFooter</code> 类表示一种类型的页眉或页脚。在该类中可以读写页眉或页脚内容、设置是否链接到前一节以及删除此页眉或页脚。</p>
+<details class="tag-plugin folding" ><summary><span>读写页眉或页脚内容</span></summary><div class="body"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Gets the paragraphs of the header or footer.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> ParagraphCollection Paragraphs</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (_header != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ParagraphCollection(_header, GetParagraphs());</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ParagraphCollection(_footer, GetParagraphs());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></details>
+
+<details class="tag-plugin folding" ><summary><span>链接到前一节</span></summary><div class="body"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Link to the previous section to continue using the same header or footer if true,</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> otherwies create new header or footer for the current section. </span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;para&gt;</span>If this is the first section in the document, nothing will happen.<span class="doctag">&lt;/para&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">bool</span> LinkToPrevious</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">get</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (_section.PreviousSection == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (_header != <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> !_section.XElement.ChildElements.Contains(_hdrRef);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> !_section.XElement.ChildElements.Contains(_ftrRef);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (_section.PreviousSection == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">value</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(_header != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(_section.XElement.ChildElements.Contains(_hdrRef))</span><br><span class="line">                &#123;</span><br><span class="line">                    _hdrRef.Remove();</span><br><span class="line">                    _doc.Package.MainDocumentPart.DeletePart(_header.HeaderPart);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (_footer != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (_section.XElement.ChildElements.Contains(_ftrRef))</span><br><span class="line">                &#123;</span><br><span class="line">                    _ftrRef.Remove();</span><br><span class="line">                    _doc.Package.MainDocumentPart.DeletePart(_footer.FooterPart);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(_header != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (!_section.XElement.ChildElements.Contains(_hdrRef))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="built_in">string</span> id = RelationshipIdGenerator.Generate(_doc);</span><br><span class="line">                    PartGenerator.AddNewHeaderPart(_doc, id);</span><br><span class="line">                    W.HeaderReference hdrRef = (W.HeaderReference)_hdrRef.CloneNode(<span class="literal">true</span>);</span><br><span class="line">                    hdrRef.Id = id;</span><br><span class="line">                    _section.XElement.InsertAt(hdrRef, <span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (_footer != <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (!_section.XElement.ChildElements.Contains(_ftrRef))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="built_in">string</span> id = RelationshipIdGenerator.Generate(_doc);</span><br><span class="line">                    PartGenerator.AddNewFooterPart(_doc, id);</span><br><span class="line">                    W.FooterReference ftrRef = (W.FooterReference)_ftrRef.CloneNode(<span class="literal">true</span>);</span><br><span class="line">                    ftrRef.Id = id;</span><br><span class="line">                    _section.XElement.InsertAt(ftrRef, <span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></details>
+
+<details class="tag-plugin folding" ><summary><span>删除页眉或页脚</span></summary><div class="body"><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> Removes the current header or footer.</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Remove</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(_header != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        _hdrRef.Remove();</span><br><span class="line">        _doc.Package.MainDocumentPart.DeletePart(_header.HeaderPart);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (_footer != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        _ftrRef.Remove();</span><br><span class="line">        _doc.Package.MainDocumentPart.DeletePart(_footer.FooterPart);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></details>
+
+<p>若想查看完整代码，请前往 <a target="_blank" rel="noopener" href="https://github.com/theyangfan/Berry.Docx">Berry.Docx</a> 开源项目库中浏览。</p>
+<h2 id="8-参考"><a href="#8-参考" class="headerlink" title="8. 参考"></a>8. 参考</h2><p>[1] <a target="_blank" rel="noopener" href="https://www.ecma-international.org/publications-and-standards/standards/ecma-376/">ECMA-376-1:2016，Office Open XML File Formats — Fundamentals and Markup Language Reference，§17.10 Headers and Footers</a></p>
+
+  
+
+
+  </article>
+  
+<br>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="https://theyangfan.github.io/">@Tomato Fan</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1" title="v1.6.1">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
