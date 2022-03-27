@@ -23,15 +23,15 @@
   
 
   
-    <meta name="description" content="1. 静态构造函数">
+    <meta name="description" content="1. 静态构造函数构造函数也可以声明为 static 。通常，静态构造函数初始化类的静态字段。  静态构造函数的名称必须和类名相同。 构造函数不能返回值。 静态构造函数声明中使用static关键字。 类只能有一个静态构造函数，而且不能带参数。 静态构造函数不能有访问修饰符。 类既可以有静态构造函数，也可以有实例构造函数。 静态构造函数不能访问所在类的实例成员。 不能从程序中显示调用静态构造函数，系">
 <meta property="og:type" content="website">
 <meta property="og:title" content="第7章 深入理解类">
 <meta property="og:url" content="https://theyangfan.github.io/wiki/IllustratedCSharp/Chapter7.html">
 <meta property="og:site_name" content="番茄就是西红柿">
-<meta property="og:description" content="1. 静态构造函数">
+<meta property="og:description" content="1. 静态构造函数构造函数也可以声明为 static 。通常，静态构造函数初始化类的静态字段。  静态构造函数的名称必须和类名相同。 构造函数不能返回值。 静态构造函数声明中使用static关键字。 类只能有一个静态构造函数，而且不能带参数。 静态构造函数不能有访问修饰符。 类既可以有静态构造函数，也可以有实例构造函数。 静态构造函数不能访问所在类的实例成员。 不能从程序中显示调用静态构造函数，系">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-13T13:15:02.093Z">
-<meta property="article:modified_time" content="2022-03-13T13:15:02.093Z">
+<meta property="article:published_time" content="2022-03-27T09:02:57.033Z">
+<meta property="article:modified_time" content="2022-03-27T09:02:57.033Z">
 <meta property="article:author" content="Tomato Fan">
 <meta property="article:tag" content="Tomato,番茄">
 <meta name="twitter:card" content="summary">
@@ -70,7 +70,7 @@
 
 <div class="widgets">
 
-<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/index.html"><span class="toc-text">前言</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter1.html"><span class="toc-text">第1章 C#和.NET框架</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter2.html"><span class="toc-text">第2章 C#和.NET Core</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter4.html"><span class="toc-text">第4章 类型、存储和变量</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter5.html"><span class="toc-text">第5章 类的基本概念</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter6.html"><span class="toc-text">第6章 方法</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/IllustratedCSharp/Chapter7.html"><span class="toc-text">第7章 深入理解类</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">1. 静态构造函数</span></a></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter8.html"><span class="toc-text">第8章 类和继承</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter19.html"><span class="toc-text">第19章 枚举器和迭代器</span></a></div></div></div>
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/index.html"><span class="toc-text">前言</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter1.html"><span class="toc-text">第1章 C#和.NET框架</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter2.html"><span class="toc-text">第2章 C#和.NET Core</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter4.html"><span class="toc-text">第4章 类型、存储和变量</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter5.html"><span class="toc-text">第5章 类的基本概念</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter6.html"><span class="toc-text">第6章 方法</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/IllustratedCSharp/Chapter7.html"><span class="toc-text">第7章 深入理解类</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">1. 静态构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-readonly-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">2. readonly 修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%B4%A2%E5%BC%95%E5%99%A8"><span class="toc-text">3. 索引器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%BF%E9%97%AE%E5%99%A8%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">4. 访问器的访问修饰符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%88%86%E9%83%A8%E7%B1%BB%E5%92%8C%E5%88%86%E9%83%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">5. 分部类和分部类型</span></a></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter8.html"><span class="toc-text">第8章 类和继承</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/IllustratedCSharp/Chapter19.html"><span class="toc-text">第19章 枚举器和迭代器</span></a></div></div></div>
 </div>
 
 
@@ -82,11 +82,53 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/IllustratedCSharp/index.html">《C#图解教程》</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-13T13:15:02.093Z">2022-03-13</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/IllustratedCSharp/index.html">《C#图解教程》</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-27T09:02:57.033Z">2022-03-27</time></div></div>
 
   <article class='content md wiki'>
   <h1 class="article-title"><span>第7章 深入理解类</span></h1>
-  <h2 id="1-静态构造函数"><a href="#1-静态构造函数" class="headerlink" title="1. 静态构造函数"></a>1. 静态构造函数</h2>
+  <h2 id="1-静态构造函数"><a href="#1-静态构造函数" class="headerlink" title="1. 静态构造函数"></a>1. 静态构造函数</h2><p>构造函数也可以声明为 static 。通常，静态构造函数初始化类的静态字段。</p>
+<ul>
+<li>静态构造函数的名称必须和类名相同。</li>
+<li>构造函数不能返回值。</li>
+<li>静态构造函数声明中使用static关键字。</li>
+<li>类只能有一个静态构造函数，而且不能带参数。</li>
+<li>静态构造函数不能有访问修饰符。</li>
+<li>类既可以有静态构造函数，也可以有实例构造函数。</li>
+<li>静态构造函数不能访问所在类的实例成员。</li>
+<li>不能从程序中显示调用静态构造函数，系统会在以下情况下自动调用：<ul>
+<li>在类的任何实例被创建之前；</li>
+<li>在类的任何静态成员被引用之前。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-readonly-修饰符"><a href="#2-readonly-修饰符" class="headerlink" title="2. readonly 修饰符"></a>2. readonly 修饰符</h2><p>字段可以使用 readonly 修饰符声明。类似于 const 一旦值被设定就不能改变。</p>
+<p>const 字段只能在字段的声明语句中初始化，而 readonly 除了在声明语句中，还可以在构造函数中初始化。</p>
+<p>const 字段的值必须可在编译时确定，而 readonly 字段的值可以在运行时决定。</p>
+<p>const 的行为总是静态的，而对于 readonly 字段以下两点是正确的。</p>
+<ul>
+<li>它可以是实例字段，也可以是静态字段。</li>
+<li>它的内存中有存储位置。</li>
+</ul>
+<h2 id="3-索引器"><a href="#3-索引器" class="headerlink" title="3. 索引器"></a>3. 索引器</h2><p>声明索引器的语法如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ReturnType <span class="keyword">this</span>[Type param1, ... ]</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">get</span></span><br><span class="line">	&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">set</span></span><br><span class="line">    &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-访问器的访问修饰符"><a href="#4-访问器的访问修饰符" class="headerlink" title="4. 访问器的访问修饰符"></a>4. 访问器的访问修饰符</h2><p>默认情况下，成员的两个访问器的访问级别和成员自身相同。访问器的访问修饰符有以下几个限制：</p>
+<ul>
+<li>仅当成员（属性或索引器）既有get访问器也有set访问器时，其访问器才能有访问修饰符。</li>
+<li>虽然两个访问器都必须出现，但它们中只能有一个有访问修饰符。</li>
+<li>访问器的访问修饰符的限制必须比成员的访问级别更严格。</li>
+</ul>
+<h2 id="5-分部类和分部类型"><a href="#5-分部类和分部类型" class="headerlink" title="5. 分部类和分部类型"></a>5. 分部类和分部类型</h2><p>类的声明可以分割成几个分部类的声明。</p>
+<ul>
+<li>每个分部类的声明都含有一些类成员的声明。</li>
+<li>类的分部类声明可以在同一个文件中，也可以在不同文件中。</li>
+</ul>
+<p>每个分部类声明必须被标注为 partial class，如下所示：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">PartClass</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">PartClass</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
   
 
 
