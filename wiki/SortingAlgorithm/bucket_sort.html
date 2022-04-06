@@ -18,20 +18,20 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
-  <title>SortingAlgorithm：冒泡排序 - 番茄就是西红柿</title>
+  <title>SortingAlgorithm：桶排序 - 番茄就是西红柿</title>
 
   
 
   
-    <meta name="description" content="冒泡排序是一种基于交换的排序典型，也是快排思想的基础，冒泡排序是一种稳定的排序算法，时间复杂度为O(n^2)。 基本思想：循环遍历多次每次从前往后把大元素往后调（或者从后向前把小元素往前调），每次确定一个最大（最小）元素，多次后达到排序序列。 具体流程：  从第一个元素开始往后遍历，每到一个位置判断是否比后面的元素大，如果比后面元素大，那么前后互换，然后继续向后，经过一轮之后就可以将序列中最大的数">
+    <meta name="description" content="桶排序是一种用空间换取时间的排序。 实现思路：将待排序的序列分到若干个桶中，每个桶内的元素再进行个别排序。 使用 C++ 实现代码如下： 1234567891011121314151617181920#include &lt;algorithm&gt;#include &lt;vector&gt;int length &#x3D; 15;int arr[] &#x3D; &amp;#123;1,8,7,44,42,46,38">
 <meta property="og:type" content="website">
-<meta property="og:title" content="冒泡排序">
-<meta property="og:url" content="https://theyangfan.github.io/wiki/SortingAlgorithm/bubble_sort.html">
+<meta property="og:title" content="桶排序">
+<meta property="og:url" content="https://theyangfan.github.io/wiki/SortingAlgorithm/bucket_sort.html">
 <meta property="og:site_name" content="番茄就是西红柿">
-<meta property="og:description" content="冒泡排序是一种基于交换的排序典型，也是快排思想的基础，冒泡排序是一种稳定的排序算法，时间复杂度为O(n^2)。 基本思想：循环遍历多次每次从前往后把大元素往后调（或者从后向前把小元素往前调），每次确定一个最大（最小）元素，多次后达到排序序列。 具体流程：  从第一个元素开始往后遍历，每到一个位置判断是否比后面的元素大，如果比后面元素大，那么前后互换，然后继续向后，经过一轮之后就可以将序列中最大的数">
+<meta property="og:description" content="桶排序是一种用空间换取时间的排序。 实现思路：将待排序的序列分到若干个桶中，每个桶内的元素再进行个别排序。 使用 C++ 实现代码如下： 1234567891011121314151617181920#include &lt;algorithm&gt;#include &lt;vector&gt;int length &#x3D; 15;int arr[] &#x3D; &amp;#123;1,8,7,44,42,46,38">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-30T14:32:59.798Z">
-<meta property="article:modified_time" content="2022-03-30T14:32:59.798Z">
+<meta property="article:published_time" content="2022-04-04T16:51:53.807Z">
+<meta property="article:modified_time" content="2022-04-04T16:51:53.807Z">
 <meta property="article:author" content="Tomato Fan">
 <meta property="article:tag" content="Tomato,番茄">
 <meta name="twitter:card" content="summary">
@@ -70,7 +70,7 @@
 
 <div class="widgets">
 
-<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/index.html"><span class="toc-text">分类</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/SortingAlgorithm/bubble_sort.html"><span class="toc-text">冒泡排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/quick_sort.html"><span class="toc-text">快速排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/insert_sort.html"><span class="toc-text">直接插入排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/shell_sort.html"><span class="toc-text">希尔排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/selection_sort.html"><span class="toc-text">简单选择排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/heap_sort.html"><span class="toc-text">堆排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/merge_sort.html"><span class="toc-text">归并排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/bucket_sort.html"><span class="toc-text">桶排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/count_sort.html"><span class="toc-text">计数排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/radix_sort.html"><span class="toc-text">基数排序</span></a></div></div></div>
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/index.html"><span class="toc-text">分类</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/bubble_sort.html"><span class="toc-text">冒泡排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/quick_sort.html"><span class="toc-text">快速排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/insert_sort.html"><span class="toc-text">直接插入排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/shell_sort.html"><span class="toc-text">希尔排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/selection_sort.html"><span class="toc-text">简单选择排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/heap_sort.html"><span class="toc-text">堆排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/merge_sort.html"><span class="toc-text">归并排序</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/SortingAlgorithm/bucket_sort.html"><span class="toc-text">桶排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/count_sort.html"><span class="toc-text">计数排序</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/SortingAlgorithm/radix_sort.html"><span class="toc-text">基数排序</span></a></div></div></div>
 </div>
 
 
@@ -82,24 +82,14 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/SortingAlgorithm/index.html">排序算法</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-03-30T14:32:59.798Z">2022-03-30</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/SortingAlgorithm/index.html">排序算法</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-04-04T16:51:53.807Z">2022-04-05</time></div></div>
 
   <article class='content md wiki'>
-  <h1 class="article-title"><span>冒泡排序</span></h1>
-  <p>冒泡排序是一种基于交换的排序典型，也是快排思想的基础，冒泡排序是一种稳定的排序算法，时间复杂度为O(n^2)。</p>
-<p>基本思想：循环遍历多次每次从前往后把大元素往后调（或者从后向前把小元素往前调），每次确定一个最大（最小）元素，多次后达到排序序列。</p>
-<p>具体流程：</p>
-<ol>
-<li><p>从第一个元素开始往后遍历，每到一个位置判断是否比后面的元素大，如果比后面元素大，那么前后互换，然后继续向后，经过一轮之后就可以将序列中最大的数被调换到了最末尾的位置；</p>
-</li>
-<li><p>第二次同样从第一个元素开始向后重复前一轮的互换操作，一直到倒数第二个位置为止（末尾元素在上一轮已经确定）；</p>
-</li>
-<li><p>同理，后面的遍历长度每次减一，直到长度为1为止。</p>
-</li>
-</ol>
-<p>最终就得到一个升序序列。</p>
+  <h1 class="article-title"><span>桶排序</span></h1>
+  <p>桶排序是一种用空间换取时间的排序。</p>
+<p>实现思路：将待排序的序列分到若干个桶中，每个桶内的元素再进行个别排序。</p>
 <p>使用 C++ 实现代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">bubble_sort</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j] &gt; arr[j+<span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">int</span> temp = arr[j];</span><br><span class="line">                arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="type">int</span> length = <span class="number">15</span>;</span><br><span class="line"><span class="type">int</span> arr[] = &#123;<span class="number">1</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">44</span>,<span class="number">42</span>,<span class="number">46</span>,<span class="number">38</span>,<span class="number">34</span>,<span class="number">33</span>,<span class="number">17</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">27</span>,<span class="number">28</span>,<span class="number">24</span>&#125;;</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; buckets;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++)&#123;</span><br><span class="line">    buckets.<span class="built_in">push_back</span>(<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i++)&#123;</span><br><span class="line">    <span class="type">int</span> index = arr[i] / <span class="number">10</span>;</span><br><span class="line">    buckets[index].<span class="built_in">push_back</span>(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; buckets.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; bucket = buckets[i];</span><br><span class="line">    std::<span class="built_in">sort</span>(bucket.<span class="built_in">begin</span>(), bucket.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; bucket.<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">        arr[n++] = bucket[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
   
@@ -107,7 +97,7 @@
 
   </article>
   
-<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/wiki/SortingAlgorithm/quick_sort.html">快速排序<span class="note">下一篇</span></a><div class="line"></div><a id="prev" href="/wiki/SortingAlgorithm/index.html">分类<span class="note">上一篇</span></a></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/wiki/SortingAlgorithm/count_sort.html">计数排序<span class="note">下一篇</span></a><div class="line"></div><a id="prev" href="/wiki/SortingAlgorithm/merge_sort.html">归并排序<span class="note">上一篇</span></a></section></div>
 
   
 
