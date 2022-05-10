@@ -31,7 +31,7 @@
 <meta property="og:description" content="本篇文章简单记录一下借助 GitHub 搭建博客的流程。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-23T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-30T14:32:59.798Z">
+<meta property="article:modified_time" content="2022-05-10T14:49:47.388Z">
 <meta property="article:author" content="Tomato Fan">
 <meta property="article:tag" content="blog">
 <meta property="article:tag" content="GitHub Pages">
@@ -146,7 +146,8 @@
 
 
 
-<h2 id="4-常见问题"><a href="#4-常见问题" class="headerlink" title="4. 常见问题"></a>4. 常见问题</h2><h3 id="4-1-out-of-memory"><a href="#4-1-out-of-memory" class="headerlink" title="4.1 out of memory"></a>4.1 out of memory</h3><p>打开 <code>C:\Users\xxxx\AppData\Roaming\npm\hexo</code> 文件，添加 <code>--max_old_space_size=8192</code> ，如下所示：</p>
+<h2 id="4-常见问题"><a href="#4-常见问题" class="headerlink" title="4. 常见问题"></a>4. 常见问题</h2><h3 id="4-1-out-of-memory"><a href="#4-1-out-of-memory" class="headerlink" title="4.1 out of memory"></a>4.1 out of memory</h3><p><strong>方法 1</strong>：删除博客根目录下面的 “db.json” 文件。</p>
+<p><strong>方法 2</strong>：打开 <code>C:\Users\xxxx\AppData\Roaming\npm\hexo</code> 文件，添加 <code>--max_old_space_size=8192</code> ，如下所示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">basedir=$(<span class="built_in">dirname</span> <span class="string">&quot;<span class="subst">$(echo <span class="string">&quot;<span class="variable">$0</span>&quot;</span> | sed -e &#x27;s,\\,/,g&#x27;)</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> `<span class="built_in">uname</span>` <span class="keyword">in</span></span><br><span class="line">    *CYGWIN*|*MINGW*|*MSYS*) basedir=`cygpath -w <span class="string">&quot;<span class="variable">$basedir</span>&quot;</span>`;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -x <span class="string">&quot;<span class="variable">$basedir</span>/node&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">exec</span> <span class="string">&quot;<span class="variable">$basedir</span>/node&quot;</span>  <span class="string">&quot;<span class="variable">$basedir</span>/node_modules/hexo-cli/bin/hexo&quot;</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">  <span class="built_in">exec</span> node --max_old_space_size=8192  <span class="string">&quot;<span class="variable">$basedir</span>/node_modules/hexo-cli/bin/hexo&quot;</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
 

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.0.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>OpenXML：样式 - 番茄就是西红柿</title>
+
+  
+
+  
+    <meta name="description" content="在 WordprocessingML 文档中，styles 预定义的是表格，编号，段落和字符属性集合，能够应用于文档中的文本。这种方式使得格式属性可以独立的存储和管理，并且实现了仅修改一处来调整整篇文档的外观。 1. 样式的继承样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的basedOn元素来实现的，元素的值表示其父样式的ID。 所以，为了获得某一样式的完整属性，应该遍历其继承树直">
+<meta property="og:type" content="website">
+<meta property="og:title" content="样式">
+<meta property="og:url" content="https://theyangfan.github.io/wiki/OpenXML/Styles.html">
+<meta property="og:site_name" content="番茄就是西红柿">
+<meta property="og:description" content="在 WordprocessingML 文档中，styles 预定义的是表格，编号，段落和字符属性集合，能够应用于文档中的文本。这种方式使得格式属性可以独立的存储和管理，并且实现了仅修改一处来调整整篇文档的外观。 1. 样式的继承样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的basedOn元素来实现的，元素的值表示其父样式的ID。 所以，为了获得某一样式的完整属性，应该遍历其继承树直">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/Styles/01.png">
+<meta property="article:published_time" content="2022-05-10T14:43:00.679Z">
+<meta property="article:modified_time" content="2022-05-10T14:43:00.679Z">
+<meta property="article:author" content="Tomato Fan">
+<meta property="article:tag" content="Tomato,番茄">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://theyangfan.github.io/wiki/OpenXML/Styles/01.png">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap wiki"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/wiki"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>全部</a><a class="title" href="/wiki/OpenXML/index.html"><div class="main">Office Open XML 解析</div><div class="sub cap">OpenXML</div></a></div>
+</header>
+
+<div class="widgets">
+
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">Office Open XML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/index.html"><span class="toc-text">白皮书</span></a></div></div><div class="widget-header cap dis-select"><span class="name">WordprocessingML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/MainDocument.html"><span class="toc-text">主文档</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OpenXML/Styles.html"><span class="toc-text">样式</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%B7%E5%BC%8F%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-text">1. 样式的继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%B7%E5%BC%8F%E7%9A%84%E5%B1%82%E7%BA%A7"><span class="toc-text">2. 样式的层级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Toggle%EF%BC%88%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%89%E5%B1%9E%E6%80%A7"><span class="toc-text">3. Toggle（触发器）属性</span></a></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/HeaderFooters.html"><span class="toc-text">页眉和页脚</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/FootEndnotes.html"><span class="toc-text">脚注尾注</span></a></div></div></div>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OpenXML/index.html">Office Open XML 解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-05-10T14:43:00.679Z">2022-05-10</time></div></div>
+
+  <article class='content md wiki'>
+  <h1 class="article-title"><span>样式</span></h1>
+  <p> 在 WordprocessingML 文档中，styles 预定义的是表格，编号，段落和字符属性集合，能够应用于文档中的文本。这种方式使得格式属性可以独立的存储和管理，并且实现了仅修改一处来调整整篇文档的外观。</p>
+<h2 id="1-样式的继承"><a href="#1-样式的继承" class="headerlink" title="1. 样式的继承"></a>1. 样式的继承</h2><p>样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的<code>basedOn</code>元素来实现的，元素的值表示其父样式的ID。</p>
+<p>所以，为了获得某一样式的完整属性，应该遍历其继承树直到未指定<code>basedOn</code>元素的样式。当同一属性在子样式和父样式中都出现时，子样式中的值会覆盖其父样式中的值。</p>
+<p>例如，有如下两个样式：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 标题 1</span><br><span class="line"><span class="tag">&lt;<span class="name">w:style</span> <span class="attr">w:type</span>=<span class="string">&quot;paragraph&quot;</span> <span class="attr">w:styleId</span>=<span class="string">&quot;1&quot;</span> <span class="attr">xmlns:w</span>=<span class="string">&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">&quot;heading 1&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:basedOn</span> <span class="attr">w:val</span>=<span class="string">&quot;a&quot;</span> /&gt;</span> // 父样式StyleId为&quot;a&quot;</span><br><span class="line">  <span class="tag">&lt;<span class="name">w:qFormat</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:pPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:outlineLvl</span> <span class="attr">w:val</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:pPr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:rFonts</span> <span class="attr">w:eastAsia</span>=<span class="string">&quot;黑体&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:rPr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:style</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 正文</span><br><span class="line"><span class="tag">&lt;<span class="name">w:style</span> <span class="attr">w:type</span>=<span class="string">&quot;paragraph&quot;</span> <span class="attr">w:styleId</span>=<span class="string">&quot;a&quot;</span> <span class="attr">w:default</span>=<span class="string">&quot;1&quot;</span> <span class="attr">xmlns:w</span>=<span class="string">&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">&quot;Normal&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:qFormat</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rsid</span> <span class="attr">w:val</span>=<span class="string">&quot;002C5BB6&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:pPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:jc</span> <span class="attr">w:val</span>=<span class="string">&quot;center&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:pPr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:rFonts</span> <span class="attr">w:eastAsia</span>=<span class="string">&quot;宋体&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:rPr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，“标题 1” 样式通过<code>basedOn</code>元素指定其父样式为 “正文” 样式，那么，“标题 1” 样式继承了正文中的居中对齐属性，而它的中文字体 “黑体” 覆盖了正文中的 “宋体”。最终，“标题 1” 的样式为 黑体，居中，大纲级别1级。</p>
+<h2 id="2-样式的层级"><a href="#2-样式的层级" class="headerlink" title="2. 样式的层级"></a>2. 样式的层级</h2><p>  样式有4种类型：表格、编号、段落和字符。不同类型的样式可以应用于文档中的同一内容，每种样式按下图的顺序来应用：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./Styles/01.png" fancybox="true"/></div></div>
+
+<p> 上图的流程如下：</p>
+<ul>
+<li>首先，文档默认格式（document defaults）应用于文档中的所有 paragraph 和 run 元素；</li>
+<li>然后，表格样式属性应用于文档中每一个引用此样式的表格；</li>
+<li>接下来，编号样式属性应用于文档中的编号项；</li>
+<li>然后，段落样式的 paragraph 和 run 属性应用于每一个引用此样式的段落；</li>
+<li>再然后，字符样式的 run 属性应用于每一个引用该样式的 run；</li>
+<li>最后，应用 paragraph 和 run 元素下的属性（direct formatting）。如果 direct formatting 中包含编号，那么，编号和段落属性都会应用。</li>
+</ul>
+<h2 id="3-Toggle（触发器）属性"><a href="#3-Toggle（触发器）属性" class="headerlink" title="3. Toggle（触发器）属性"></a>3. Toggle（触发器）属性</h2><p>在 WordprocessingML 文档中，Bold（加粗）和 Italic（斜体）属性都是 toggle 属性。如前两节所述，多种样式可以同时影响文档同一块内容的格式。当同一属性出现在一个或多个应用于某个run的样式中时，共同作用的结果取决于是否是 toggle 属性。</p>
+<p>如果属性不是 toggle 属性，那么属性的值应该按照前两节的规则来确定，也就是流程中最后出现的值生效。</p>
+<p>如果属性是 toggle 属性，它的值应该是 <code>true</code> 或 <code>false</code> （或着 1 或 0），那么应该遵循以下规则：</p>
+<ul>
+<li><p><strong>如果一个 toggle 属性在内容的直接格式中有定义</strong>，那么应该使用直接格式中的值。</p>
+</li>
+<li><p>否则，toggle 属性的值按以下方式确定：</p>
+<ul>
+<li><p><strong>如果一个 toggle 属性出现在相同级别的不同样式中</strong>，那么应该采用按如下方式第一个出现的值（如果样式中均未出现该属性，那么该属性的值应该使用默认值）：</p>
+<ul>
+<li>尝试从样式中读取属性值；</li>
+<li>如果样式中没有指定此属性但是指定了 <code>basedOn</code> 元素，那么使用 <code>baseOn</code>指定的父样式重复上述步骤。</li>
+<li>例如：在一个段落样式中未指定 <code>bold</code> 属性，但是在其父样式中指定了该属性，并且值为 <code>true</code>。那么该样式的 <code>bold</code> 属性为 <code>true</code>。</li>
+</ul>
+</li>
+<li><p><strong>如果一个 toggle 属性出现在不同级别的多个样式中</strong>，那么它的值按照下述规则计算：</p>
+<ul>
+<li><p>如果该属性在文档默认格式中的值为 <code>true</code>，那么它的值就是 <code>true</code>。</p>
+</li>
+<li><p>反之，按照如下公式计算：</p>
+<p><em>value &#x3D; val(table) <strong>XOR</strong> val(paragraph) <strong>XOR</strong> val(character)</em></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/wiki/OpenXML/HeaderFooters.html">页眉和页脚<span class="note">下一篇</span></a><div class="line"></div><a id="prev" href="/wiki/OpenXML/MainDocument.html">主文档<span class="note">上一篇</span></a></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="https://theyangfan.github.io/">@Tomato Fan</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1" title="v1.6.1">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.6.1';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
