@@ -31,8 +31,8 @@
 <meta property="og:description" content="脚注和尾注用于在不打断文档正常阅读流程的前提下，对文档内容添加引用材料、说明等补充信息。 脚注通常位于页面底端或者被引用文字的下方；尾注通常位于文档结尾或者节的结尾。 脚注和尾注都包含两个部分：  一个存在于正文中的注释引用标记，表明其在脚注或尾注中添加了附加信息，该标记带有一个编号，用于提示阅读者该注释是在页面，节还是文档的结尾。 实际的脚注或尾注内容。  示例，在下图的例子中对文档内容添加了">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/FootEndnotes/01.png">
-<meta property="article:published_time" content="2022-04-19T15:50:12.610Z">
-<meta property="article:modified_time" content="2022-04-19T15:50:12.610Z">
+<meta property="article:published_time" content="2022-07-11T15:45:35.726Z">
+<meta property="article:modified_time" content="2022-07-11T15:45:35.726Z">
 <meta property="article:author" content="Tomato Fan">
 <meta property="article:tag" content="Tomato,番茄">
 <meta name="twitter:card" content="summary">
@@ -72,7 +72,7 @@
 
 <div class="widgets">
 
-<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">Office Open XML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/index.html"><span class="toc-text">白皮书</span></a></div></div><div class="widget-header cap dis-select"><span class="name">WordprocessingML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/MainDocument.html"><span class="toc-text">主文档</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/Styles.html"><span class="toc-text">样式</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/HeaderFooters.html"><span class="toc-text">页眉和页脚</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OpenXML/FootEndnotes.html"><span class="toc-text">脚注尾注</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%84%9A%E6%B3%A8"><span class="toc-text">1. 脚注</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Footnotes"><span class="toc-text">1.1 Footnotes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Footnote"><span class="toc-text">1.2 Footnote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-FootnoteReferenceMark"><span class="toc-text">1.2 FootnoteReferenceMark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-FootnoteReference"><span class="toc-text">1.3 FootnoteReference</span></a></li></ol></li></ol></div></div></div>
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">Office Open XML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/index.html"><span class="toc-text">白皮书</span></a></div></div><div class="widget-header cap dis-select"><span class="name">WordprocessingML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/MainDocument.html"><span class="toc-text">主文档</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/Styles.html"><span class="toc-text">样式</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/Fonts.html"><span class="toc-text">字体</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/HeaderFooters.html"><span class="toc-text">页眉和页脚</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OpenXML/FootEndnotes.html"><span class="toc-text">脚注尾注</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%84%9A%E6%B3%A8"><span class="toc-text">1. 脚注</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Footnotes"><span class="toc-text">1.1 Footnotes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Footnote"><span class="toc-text">1.2 Footnote</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-FootnoteReferenceMark"><span class="toc-text">1.2 FootnoteReferenceMark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-FootnoteReference"><span class="toc-text">1.3 FootnoteReference</span></a></li></ol></li></ol></div></div></div>
 </div>
 
 
@@ -84,7 +84,7 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OpenXML/index.html">Office Open XML 解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-04-19T15:50:12.610Z">2022-04-19</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OpenXML/index.html">Office Open XML 解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-07-11T15:45:35.726Z">2022-07-11</time></div></div>
 
   <article class='content md wiki'>
   <h1 class="article-title"><span>脚注尾注</span></h1>

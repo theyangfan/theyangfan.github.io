@@ -23,16 +23,18 @@
   
 
   
-    <meta name="description" content="在 WordprocessingML 文档中，styles 预定义的是表格，编号，段落和字符属性集合，能够应用于文档中的文本。这种方式使得格式属性可以独立的存储和管理，并且实现了仅修改一处来调整整篇文档的外观。 1. 样式的继承样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的basedOn元素来实现的，元素的值表示其父样式的ID。 所以，为了获得某一样式的完整属性，应该遍历其继承树直">
+    <meta name="description" content="在 WordprocessingML 文档中，样式是预定义的表格，编号，段落和字符属性的集合，能够应用于文档中的文本。 1. 同类样式之间的继承关系样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的basedOn元素来实现的，元素的值表示其父样式的ID。 所以，为了获得某一样式的完整属性，应该遍历其继承树直到未指定basedOn元素的样式。当同一属性在子样式和父样式中都出现时，子样式中的">
 <meta property="og:type" content="website">
 <meta property="og:title" content="样式">
 <meta property="og:url" content="https://theyangfan.github.io/wiki/OpenXML/Styles.html">
 <meta property="og:site_name" content="番茄就是西红柿">
-<meta property="og:description" content="在 WordprocessingML 文档中，styles 预定义的是表格，编号，段落和字符属性集合，能够应用于文档中的文本。这种方式使得格式属性可以独立的存储和管理，并且实现了仅修改一处来调整整篇文档的外观。 1. 样式的继承样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的basedOn元素来实现的，元素的值表示其父样式的ID。 所以，为了获得某一样式的完整属性，应该遍历其继承树直">
+<meta property="og:description" content="在 WordprocessingML 文档中，样式是预定义的表格，编号，段落和字符属性的集合，能够应用于文档中的文本。 1. 同类样式之间的继承关系样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的basedOn元素来实现的，元素的值表示其父样式的ID。 所以，为了获得某一样式的完整属性，应该遍历其继承树直到未指定basedOn元素的样式。当同一属性在子样式和父样式中都出现时，子样式中的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/Styles/01.png">
-<meta property="article:published_time" content="2022-05-10T14:43:00.679Z">
-<meta property="article:modified_time" content="2022-05-10T14:43:00.679Z">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/Styles/02.png">
+<meta property="og:image" content="https://theyangfan.github.io/wiki/OpenXML/Styles/03.png">
+<meta property="article:published_time" content="2022-07-11T15:45:35.727Z">
+<meta property="article:modified_time" content="2022-07-11T15:45:35.727Z">
 <meta property="article:author" content="Tomato Fan">
 <meta property="article:tag" content="Tomato,番茄">
 <meta name="twitter:card" content="summary">
@@ -72,7 +74,7 @@
 
 <div class="widgets">
 
-<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">Office Open XML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/index.html"><span class="toc-text">白皮书</span></a></div></div><div class="widget-header cap dis-select"><span class="name">WordprocessingML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/MainDocument.html"><span class="toc-text">主文档</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OpenXML/Styles.html"><span class="toc-text">样式</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%B7%E5%BC%8F%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-text">1. 样式的继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%B7%E5%BC%8F%E7%9A%84%E5%B1%82%E7%BA%A7"><span class="toc-text">2. 样式的层级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Toggle%EF%BC%88%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%89%E5%B1%9E%E6%80%A7"><span class="toc-text">3. Toggle（触发器）属性</span></a></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/HeaderFooters.html"><span class="toc-text">页眉和页脚</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/FootEndnotes.html"><span class="toc-text">脚注尾注</span></a></div></div></div>
+<div class="widget-wrap multi" id="toc"><div class="widget-header cap dis-select"><span class="name">Office Open XML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/index.html"><span class="toc-text">白皮书</span></a></div></div><div class="widget-header cap dis-select"><span class="name">WordprocessingML</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/MainDocument.html"><span class="toc-text">主文档</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OpenXML/Styles.html"><span class="toc-text">样式</span></a><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%90%8C%E7%B1%BB%E6%A0%B7%E5%BC%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB"><span class="toc-text">1. 同类样式之间的继承关系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%B8%8D%E5%90%8C%E6%A0%B7%E5%BC%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%BA%94%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="toc-text">2. 不同样式之间的应用顺序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Toggle%EF%BC%88%E8%A7%A6%E5%8F%91%E5%99%A8%EF%BC%89%E5%B1%9E%E6%80%A7"><span class="toc-text">3. Toggle（触发器）属性</span></a></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/Fonts.html"><span class="toc-text">字体</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/HeaderFooters.html"><span class="toc-text">页眉和页脚</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OpenXML/FootEndnotes.html"><span class="toc-text">脚注尾注</span></a></div></div></div>
 </div>
 
 
@@ -84,63 +86,79 @@
 
   
   
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OpenXML/index.html">Office Open XML 解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-05-10T14:43:00.679Z">2022-05-10</time></div></div>
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">在做了</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OpenXML/index.html">Office Open XML 解析</a></div><div id="post-meta">更新于&nbsp;<time datetime="2022-07-11T15:45:35.727Z">2022-07-11</time></div></div>
 
   <article class='content md wiki'>
   <h1 class="article-title"><span>样式</span></h1>
-  <p> 在 WordprocessingML 文档中，styles 预定义的是表格，编号，段落和字符属性集合，能够应用于文档中的文本。这种方式使得格式属性可以独立的存储和管理，并且实现了仅修改一处来调整整篇文档的外观。</p>
-<h2 id="1-样式的继承"><a href="#1-样式的继承" class="headerlink" title="1. 样式的继承"></a>1. 样式的继承</h2><p>样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的<code>basedOn</code>元素来实现的，元素的值表示其父样式的ID。</p>
+  <p>在 WordprocessingML 文档中，样式是预定义的表格，编号，段落和字符属性的集合，能够应用于文档中的文本。</p>
+<h1 id="1-同类样式之间的继承关系"><a href="#1-同类样式之间的继承关系" class="headerlink" title="1. 同类样式之间的继承关系"></a>1. 同类样式之间的继承关系</h1><p>样式可以继承于其他的同类型样式。这种继承关系是通过指定样式的<code>basedOn</code>元素来实现的，元素的值表示其父样式的ID。</p>
 <p>所以，为了获得某一样式的完整属性，应该遍历其继承树直到未指定<code>basedOn</code>元素的样式。当同一属性在子样式和父样式中都出现时，子样式中的值会覆盖其父样式中的值。</p>
 <p>例如，有如下两个样式：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 标题 1</span><br><span class="line"><span class="tag">&lt;<span class="name">w:style</span> <span class="attr">w:type</span>=<span class="string">&quot;paragraph&quot;</span> <span class="attr">w:styleId</span>=<span class="string">&quot;1&quot;</span> <span class="attr">xmlns:w</span>=<span class="string">&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">&quot;heading 1&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:basedOn</span> <span class="attr">w:val</span>=<span class="string">&quot;a&quot;</span> /&gt;</span> // 父样式StyleId为&quot;a&quot;</span><br><span class="line">  <span class="tag">&lt;<span class="name">w:qFormat</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:pPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:outlineLvl</span> <span class="attr">w:val</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:pPr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:rFonts</span> <span class="attr">w:eastAsia</span>=<span class="string">&quot;黑体&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:rPr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:style</span>&gt;</span></span><br><span class="line"></span><br><span class="line">// 正文</span><br><span class="line"><span class="tag">&lt;<span class="name">w:style</span> <span class="attr">w:type</span>=<span class="string">&quot;paragraph&quot;</span> <span class="attr">w:styleId</span>=<span class="string">&quot;a&quot;</span> <span class="attr">w:default</span>=<span class="string">&quot;1&quot;</span> <span class="attr">xmlns:w</span>=<span class="string">&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">&quot;Normal&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:qFormat</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rsid</span> <span class="attr">w:val</span>=<span class="string">&quot;002C5BB6&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:pPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:jc</span> <span class="attr">w:val</span>=<span class="string">&quot;center&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:pPr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:rFonts</span> <span class="attr">w:eastAsia</span>=<span class="string">&quot;宋体&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:rPr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:style</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>其中，“标题 1” 样式通过<code>basedOn</code>元素指定其父样式为 “正文” 样式，那么，“标题 1” 样式继承了正文中的居中对齐属性，而它的中文字体 “黑体” 覆盖了正文中的 “宋体”。最终，“标题 1” 的样式为 黑体，居中，大纲级别1级。</p>
-<h2 id="2-样式的层级"><a href="#2-样式的层级" class="headerlink" title="2. 样式的层级"></a>2. 样式的层级</h2><p>  样式有4种类型：表格、编号、段落和字符。不同类型的样式可以应用于文档中的同一内容，每种样式按下图的顺序来应用：</p>
+<h1 id="2-不同样式之间的应用顺序"><a href="#2-不同样式之间的应用顺序" class="headerlink" title="2. 不同样式之间的应用顺序"></a>2. 不同样式之间的应用顺序</h1><p>样式有4种类型：表格、编号、段落和字符。不同类型的样式可以应用于文档中的同一内容，每种样式按下图的顺序来应用：</p>
 <div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./Styles/01.png" fancybox="true"/></div></div>
 
-<p> 上图的流程如下：</p>
+<p>上图的流程如下：</p>
 <ul>
 <li>首先，文档默认格式（document defaults）应用于文档中的所有 paragraph 和 run 元素；</li>
 <li>然后，表格样式属性应用于文档中每一个引用此样式的表格；</li>
 <li>接下来，编号样式属性应用于文档中的编号项；</li>
 <li>然后，段落样式的 paragraph 和 run 属性应用于每一个引用此样式的段落；</li>
 <li>再然后，字符样式的 run 属性应用于每一个引用该样式的 run；</li>
-<li>最后，应用 paragraph 和 run 元素下的属性（direct formatting）。如果 direct formatting 中包含编号，那么，编号和段落属性都会应用。</li>
+<li>最后，应用 paragraph 和 run 元素下的属性（direct formatting）。</li>
 </ul>
-<h2 id="3-Toggle（触发器）属性"><a href="#3-Toggle（触发器）属性" class="headerlink" title="3. Toggle（触发器）属性"></a>3. Toggle（触发器）属性</h2><p>在 WordprocessingML 文档中，Bold（加粗）和 Italic（斜体）属性都是 toggle 属性。如前两节所述，多种样式可以同时影响文档同一块内容的格式。当同一属性出现在一个或多个应用于某个run的样式中时，共同作用的结果取决于是否是 toggle 属性。</p>
+<h1 id="3-Toggle（触发器）属性"><a href="#3-Toggle（触发器）属性" class="headerlink" title="3. Toggle（触发器）属性"></a>3. Toggle（触发器）属性</h1><p>在 WordprocessingML 文档中，Bold（加粗）是 toggle 属性。如前两节所述，多种样式可以同时影响文档同一块内容的格式。当同一属性出现在一个或多个应用于某个run的样式中时，共同作用的结果和它是否是 toggle 属性有关。</p>
 <p>如果属性不是 toggle 属性，那么属性的值应该按照前两节的规则来确定，也就是流程中最后出现的值生效。</p>
 <p>如果属性是 toggle 属性，它的值应该是 <code>true</code> 或 <code>false</code> （或着 1 或 0），那么应该遵循以下规则：</p>
 <ul>
-<li><p><strong>如果一个 toggle 属性在内容的直接格式中有定义</strong>，那么应该使用直接格式中的值。</p>
-</li>
-<li><p>否则，toggle 属性的值按以下方式确定：</p>
-<ul>
-<li><p><strong>如果一个 toggle 属性出现在相同级别的不同样式中</strong>，那么应该采用按如下方式第一个出现的值（如果样式中均未出现该属性，那么该属性的值应该使用默认值）：</p>
-<ul>
+<li><strong>如果一个 toggle 属性在内容的直接格式中有定义</strong>，那么应该使用直接格式中的值。</li>
+<li>否则，toggle 属性的值按以下方式确定：<ul>
+<li><strong>如果一个 toggle 属性出现在相同级别的不同样式中</strong>，那么应该采用按如下方式第一个出现的值（如果样式中均未出现该属性，那么该属性的值应该使用默认值）：<ul>
 <li>尝试从样式中读取属性值；</li>
 <li>如果样式中没有指定此属性但是指定了 <code>basedOn</code> 元素，那么使用 <code>baseOn</code>指定的父样式重复上述步骤。</li>
 <li>例如：在一个段落样式中未指定 <code>bold</code> 属性，但是在其父样式中指定了该属性，并且值为 <code>true</code>。那么该样式的 <code>bold</code> 属性为 <code>true</code>。</li>
 </ul>
 </li>
-<li><p><strong>如果一个 toggle 属性出现在不同级别的多个样式中</strong>，那么它的值按照下述规则计算：</p>
-<ul>
-<li><p>如果该属性在文档默认格式中的值为 <code>true</code>，那么它的值就是 <code>true</code>。</p>
-</li>
-<li><p>反之，按照如下公式计算：</p>
-<p><em>value &#x3D; val(table) <strong>XOR</strong> val(paragraph) <strong>XOR</strong> val(character)</em></p>
-</li>
+<li><strong>如果一个 toggle 属性出现在不同级别的多个样式中</strong>，那么它的值按照下述规则计算：<ul>
+<li>如果该属性在文档默认格式中的值为 <code>true</code>，那么它的值就是 <code>true</code>。</li>
+<li>反之，按照如下公式计算：</li>
+<li><em><strong>value &#x3D; val(table) XOR val(paragraph) XOR val(character)</strong></em></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<p>例如，下面这样一个文档：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./Styles/02.png" fancybox="true"/></div></div>
+
+<p>在表格中，表格应用了一个样式，指定第一行加粗；在第一个单元格中，文字“1行”指定了“标题 1” 字符样式，样式设置了加粗，如下所示：<br>表格样式：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:tblStylePr</span> <span class="attr">w:type</span>=<span class="string">&quot;firstRow&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">w:b</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">w:bCs</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:tblStylePr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>“标题 1 字符” 样式：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:style</span> <span class="attr">w:type</span>=<span class="string">&quot;character&quot;</span> <span class="attr">w:styleId</span>=<span class="string">&quot;10&quot;</span> <span class="attr">w:customStyle</span>=<span class="string">&quot;1&quot;</span> <span class="attr">xmlns:w</span>=<span class="string">&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:name</span> <span class="attr">w:val</span>=<span class="string">&quot;标题 1 字符&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:basedOn</span> <span class="attr">w:val</span>=<span class="string">&quot;a0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:link</span> <span class="attr">w:val</span>=<span class="string">&quot;1&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:uiPriority</span> <span class="attr">w:val</span>=<span class="string">&quot;9&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rsid</span> <span class="attr">w:val</span>=<span class="string">&quot;00D8098D&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:b</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:bCs</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:kern</span> <span class="attr">w:val</span>=<span class="string">&quot;44&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:sz</span> <span class="attr">w:val</span>=<span class="string">&quot;44&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:szCs</span> <span class="attr">w:val</span>=<span class="string">&quot;44&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:rPr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>根据上述规则，由于 bold 是 Toggle 属性，而且出现在了不同类型的样式中，所以首先判断 bold 属性在文档默认格式中的值是否为 true:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">w:docDefaults</span> <span class="attr">xmlns:w</span>=<span class="string">&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:rPrDefault</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">w:rFonts</span> <span class="attr">w:asciiTheme</span>=<span class="string">&quot;minorHAnsi&quot;</span> <span class="attr">w:hAnsiTheme</span>=<span class="string">&quot;minorHAnsi&quot;</span> <span class="attr">w:eastAsiaTheme</span>=<span class="string">&quot;minorEastAsia&quot;</span> <span class="attr">w:cstheme</span>=<span class="string">&quot;minorBidi&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">w:kern</span> <span class="attr">w:val</span>=<span class="string">&quot;2&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">w:sz</span> <span class="attr">w:val</span>=<span class="string">&quot;21&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">w:szCs</span> <span class="attr">w:val</span>=<span class="string">&quot;21&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">w:lang</span> <span class="attr">w:val</span>=<span class="string">&quot;en-US&quot;</span> <span class="attr">w:eastAsia</span>=<span class="string">&quot;zh-CN&quot;</span> <span class="attr">w:bidi</span>=<span class="string">&quot;ar-SA&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">w:rPr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">w:rPrDefault</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">w:pPrDefault</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:docDefaults</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>从上面可以看到，在默认值中没有指定 bold 元素，也就是说不符合第一个条件；</p>
+<p>然后，按照公式 <em>value &#x3D; val(table) <strong>XOR</strong> val(paragraph) <strong>XOR</strong> val(character) 计算得出：</em></p>
+<p><strong>true XOR false XOR true &#x3D;&gt; false</strong></p>
+<p>所以，最终的结果是 false, 也就是不加粗。</p>
+<p>如果此时我们对第一个段落应用 “标题 2”段落样式，且“标题 2” 设置加粗，那么最终结果如下：</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="./Styles/03.png" fancybox="true"/></div></div>
+
+<p>1 行 &#x3D; true XOR true XOR true &#x3D; true；</p>
+<p>1 列 &#x3D; true XOR true XOR false &#x3D; false;</p>
+<p>除了 Bold 外，下面这些元素也是 toggle 属性：bCs (Complex Script Bold) ，caps (Display All Characters As Capital Letters)，emboss (Embossing)，i (Italics)，iCs (Complex Script Italics)，iCs (Complex Script Italics)，outline (Display Character Outline)，shadow (Shadow)，smallCaps (Small Caps)，strike (Single Strikethrough)，vanish (Hidden Text) 。</p>
 
   
 
 
   </article>
   
-<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/wiki/OpenXML/HeaderFooters.html">页眉和页脚<span class="note">下一篇</span></a><div class="line"></div><a id="prev" href="/wiki/OpenXML/MainDocument.html">主文档<span class="note">上一篇</span></a></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/wiki/OpenXML/Fonts.html">字体<span class="note">下一篇</span></a><div class="line"></div><a id="prev" href="/wiki/OpenXML/MainDocument.html">主文档<span class="note">上一篇</span></a></section></div>
 
   
 
